@@ -1,0 +1,3 @@
+{"at":"2026-11-19T16:52:39.740Z","kind":"device","device":{"path":"COM14","manufacturer":"wch.cn","serialNumber":"5&26DB06CC&0&4","pnpId":"USB\\VID_1A86&PID_7523\\5&26DB06CC&0&4","locationId":"Port_#0004.Hub_#0001","friendlyName":"USB-SERIAL CH340 (COM14)","vendorId":"1A86","productId":"7523"},"baudRate":115200,"purpose":"Read-only inspection; no motion commands"}
+{"at":"2026-11-19T16:52:42.251Z","direction":"tx","text":"M115\n"}
+{"at":"2026-11-19T16:52:42.258Z","kind":"closed","filename":"C:\\Users\\mario\\Downloads\\windtunnel\\Wind Tunnel Files\\wind-tunnel-app\\docs\\captures\\2026-11-19T16-52-39.739Z-pitot-inspection.jsonl"}

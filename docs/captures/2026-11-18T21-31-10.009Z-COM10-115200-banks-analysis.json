@@ -1,0 +1,593 @@
+{
+  "file": "docs/captures/2026-11-18T21-31-10.009Z-COM10-115200-banks.jsonl",
+  "rxBytes": 5802,
+  "frames": 163,
+  "unknownBytes": 0,
+  "trailingBytes": 16,
+  "messages": [
+    "Opened serial",
+    "Read command: 0",
+    "At frequency: 0",
+    "Turned all sensors off",
+    "Read command: 4",
+    "At frequency: 100000",
+    "Also recieved sample amount: 0",
+    "Toggled absolute pressure sensor",
+    "Read command: 0",
+    "At frequency: 0",
+    "Turned all sensors off",
+    "Read command: 3",
+    "At frequency: 100000",
+    "Also recieved sample amount: 0",
+    "Toggled temperature sensors",
+    "Read command: 0",
+    "At frequency: 0",
+    "Turned all sensors off",
+    "Read command: 5",
+    "At frequency: 100000",
+    "Also recieved sample amount: 0",
+    "Toggled local differential pressure sensors",
+    "Read command: 0",
+    "At frequency: 0",
+    "Turned all sensors off",
+    "Read command: 6",
+    "At frequency: 100000",
+    "Also recieved sample amount: 0",
+    "Toggled backpack pressure sensors",
+    "Read command: 0",
+    "At frequency: 0",
+    "Turned all sensors off",
+    "Read command: 2",
+    "At frequency: 100000",
+    "Also recieved sample amount: 0",
+    "Toggled strain sensors",
+    "Read command: 0",
+    "At frequency: 0",
+    "Turned all sensors off"
+  ],
+  "banks": {
+    "2": {
+      "frames": 29,
+      "deviceIntervalMs": {
+        "min": 100.308,
+        "median": 100.311,
+        "p95": 100.314,
+        "max": 100.317
+      },
+      "channels": [
+        {
+          "slot": 1,
+          "valid": 29,
+          "invalid": 0,
+          "first": [-5123, -4889, -4578, -4662, -4495, -4224, -4446, -4805],
+          "min": -6266,
+          "max": -4224,
+          "median": -5014,
+          "validArrivalGapMedianMs": 100,
+          "validArrivalGapMaxMs": 102
+        },
+        {
+          "slot": 2,
+          "valid": 29,
+          "invalid": 0,
+          "first": [-2351, -2309, -1977, -1756, -1763, -1760, -1790, -1965],
+          "min": -3414,
+          "max": -1756,
+          "median": -2257,
+          "validArrivalGapMedianMs": 100,
+          "validArrivalGapMaxMs": 102
+        },
+        {
+          "slot": 3,
+          "valid": 29,
+          "invalid": 0,
+          "first": [-1115, -869, -688, -571, -522, -572, -542, -786],
+          "min": -2358,
+          "max": -522,
+          "median": -1194,
+          "validArrivalGapMedianMs": 100,
+          "validArrivalGapMaxMs": 102
+        },
+        {
+          "slot": 4,
+          "valid": 29,
+          "invalid": 0,
+          "first": [-589, -628, -253, -191, -90, 25, 318, 506],
+          "min": -628,
+          "max": 535,
+          "median": 116,
+          "validArrivalGapMedianMs": 100,
+          "validArrivalGapMaxMs": 102
+        }
+      ]
+    },
+    "3": {
+      "frames": 30,
+      "deviceIntervalMs": {
+        "min": 100.002,
+        "median": 100.004,
+        "p95": 100.006,
+        "max": 100.006
+      },
+      "channels": [
+        {
+          "slot": 1,
+          "valid": 0,
+          "invalid": 30,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 2,
+          "valid": 0,
+          "invalid": 30,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 3,
+          "valid": 0,
+          "invalid": 30,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 4,
+          "valid": 0,
+          "invalid": 30,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        }
+      ]
+    },
+    "4": {
+      "frames": 50,
+      "deviceIntervalMs": {
+        "min": 110.038,
+        "median": 110.042,
+        "p95": 110.045,
+        "max": 445.954
+      },
+      "channels": [
+        {
+          "slot": 1,
+          "valid": 24,
+          "invalid": 26,
+          "first": [
+            99.31883239746094, 99.2809829711914, 99.2620620727539, 99.29991149902344,
+            99.31883239746094, 99.31883239746094, 99.2809829711914, 99.29991149902344
+          ],
+          "min": 99.2620620727539,
+          "max": 99.35667419433594,
+          "median": 99.31883239746094,
+          "validArrivalGapMedianMs": 111,
+          "validArrivalGapMaxMs": 770
+        }
+      ]
+    },
+    "5": {
+      "frames": 29,
+      "deviceIntervalMs": {
+        "min": 101.526,
+        "median": 101.53,
+        "p95": 101.531,
+        "max": 101.531
+      },
+      "channels": [
+        {
+          "slot": 1,
+          "valid": 29,
+          "invalid": 0,
+          "first": [
+            2337.067626953125, 444.27093505859375, 285.9043884277344, 178.04620361328125,
+            106.42230224609375, 58.70119094848633, 33.2780876159668, 18.497211456298828
+          ],
+          "min": -0.16892430186271667,
+          "max": 2337.067626953125,
+          "median": 0,
+          "validArrivalGapMedianMs": 102,
+          "validArrivalGapMaxMs": 104
+        },
+        {
+          "slot": 2,
+          "valid": 29,
+          "invalid": 0,
+          "first": [
+            2767.5712890625, 662.0987548828125, 428.5609130859375, 269.6876220703125,
+            164.10995483398438, 93.75299072265625, 56.33625411987305, 34.62948226928711
+          ],
+          "min": 6.841434001922607,
+          "max": 2767.5712890625,
+          "median": 7.179283142089844,
+          "validArrivalGapMedianMs": 102,
+          "validArrivalGapMaxMs": 104
+        },
+        {
+          "slot": 3,
+          "valid": 0,
+          "invalid": 29,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 4,
+          "valid": 0,
+          "invalid": 29,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        }
+      ]
+    },
+    "6": {
+      "frames": 25,
+      "deviceIntervalMs": {
+        "min": 120.218,
+        "median": 120.221,
+        "p95": 120.226,
+        "max": 120.228
+      },
+      "channels": [
+        {
+          "slot": 1,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2767.5712890625, 1115.4072265625, 656.5242919921875, 375.43426513671875,
+            199.24620056152344, 111.32110595703125, 63.43107223510742, 40.62629318237305
+          ],
+          "min": 18.328285217285156,
+          "max": 2767.5712890625,
+          "median": 19.08844566345215,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 2,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2767.5712890625, 858.135498046875, 514.8812866210938, 304.317138671875,
+            173.7386474609375, 107.52030944824219, 0, 54.73147201538086
+          ],
+          "min": 0,
+          "max": 2767.5712890625,
+          "median": 36.318721771240234,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 3,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2767.5712890625, 792.4238891601562, 484.3904113769531, 277.3736877441406,
+            148.31553649902344, 84.71553039550781, 49.832672119140625, 34.038246154785156
+          ],
+          "min": 16.216733932495117,
+          "max": 2767.5712890625,
+          "median": 17.652587890625,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 4,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2692.90673828125, 468.42706298828125, 289.02947998046875, 168.83982849121094,
+            94.09083557128906, 56.927490234375, 37.247806549072266, 26.605575561523438
+          ],
+          "min": 17.145816802978516,
+          "max": 2692.90673828125,
+          "median": 17.399202346801758,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 5,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2767.5712890625, 678.5689086914062, 410.9083251953125, 220.61514282226562,
+            119.26055145263672, 63.768917083740234, 33.95378494262695, 20.101991653442383
+          ],
+          "min": 0,
+          "max": 2767.5712890625,
+          "median": 5.912350177764893,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 6,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2767.5712890625, 756.8653564453125, 464.71075439453125, 258.1163024902344,
+            149.41354370117188, 86.40478515625, 55.660552978515625, 39.78167724609375
+          ],
+          "min": 0,
+          "max": 2767.5712890625,
+          "median": 25.676494598388672,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 7,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            1048.9354248046875, 189.8708953857422, 126.60874938964844, 82.51951599121094,
+            59.54581832885742, 44.59601593017578, 38.007965087890625, 35.136253356933594
+          ],
+          "min": 0,
+          "max": 1048.9354248046875,
+          "median": 30.490835189819336,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 8,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2655.490234375, 472.56573486328125, 295.4486083984375, 169.51553344726562,
+            101.69242858886719, 62.755374908447266, 44.76493835449219, 35.89641189575195
+          ],
+          "min": 25.676494598388672,
+          "max": 2655.490234375,
+          "median": 27.36573600769043,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 9,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2748.144775390625, 488.444580078125, 306.1752624511719, 177.11712646484375,
+            107.60477447509766, 68.16095733642578, 48.903587341308594, 39.19043731689453
+          ],
+          "min": 29.39282989501953,
+          "max": 2748.144775390625,
+          "median": 30.15298843383789,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 10,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2767.5712890625, 761.93310546875, 463.0215148925781, 279.6541748046875,
+            171.54263305664062, 109.0406265258789, 81.08367156982422, 66.8940200805664
+          ],
+          "min": 0,
+          "max": 2767.5712890625,
+          "median": 54.900394439697266,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 11,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            1309.247802734375, 238.0143280029297, 149.41354370117188, 95.61115264892578,
+            63.008758544921875, 47.552188873291016, 39.52828598022461, 34.46055603027344
+          ],
+          "min": 29.054977416992188,
+          "max": 1309.247802734375,
+          "median": 30.913148880004883,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 12,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2767.5712890625, 564.4605102539062, 330.16253662109375, 188.18167114257812,
+            101.10118865966797, 58.95458221435547, 36.825496673583984, 24.071714401245117
+          ],
+          "min": 10.21992015838623,
+          "max": 2767.5712890625,
+          "median": 13.345019340515137,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 13,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2767.5712890625, 541.5712890625, 317.4932556152344, 180.1577606201172,
+            96.20238494873047, 56.25178909301758, 33.78485870361328, 22.044620513916016
+          ],
+          "min": 0,
+          "max": 2767.5712890625,
+          "median": 10.98007869720459,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 14,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2767.5712890625, 567.5011596679688, 347.223876953125, 192.9115447998047,
+            111.40557098388672, 67.23186492919922, 43.32908248901367, 32.01115417480469
+          ],
+          "min": 19.595218658447266,
+          "max": 2767.5712890625,
+          "median": 20.862150192260742,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 15,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2767.5712890625, 825.7864990234375, 505.4215087890625, 293.92828369140625,
+            163.77210998535156, 100.2565689086914, 65.28923797607422, 48.396812438964844
+          ],
+          "min": 0,
+          "max": 2767.5712890625,
+          "median": 32.01115417480469,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 16,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            1706.7265625, 300.178466796875, 194.00955200195312, 119.34500885009766, 0,
+            57.349796295166016, 47.04541778564453, 41.55537796020508
+          ],
+          "min": 0,
+          "max": 1706.7265625,
+          "median": 36.65657043457031,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 17,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            971.3992309570312, 171.6270751953125, 112.6725082397461, 71.70836639404297,
+            49.325897216796875, 36.74103546142578, 29.899600982666016, 26.43665313720703
+          ],
+          "min": 22.973703384399414,
+          "max": 971.3992309570312,
+          "median": 24.5784854888916,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 18,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2767.5712890625, 537.8549194335938, 332.6119384765625, 188.6884307861328,
+            112.08126831054688, 68.92111206054688, 47.129878997802734, 36.74103546142578
+          ],
+          "min": 26.098804473876953,
+          "max": 2767.5712890625,
+          "median": 26.94342613220215,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 19,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2767.5712890625, 741.6621704101562, 451.4501953125, 248.7410430908203,
+            141.13626098632812, 77.62071228027344, 48.56573486328125, 32.349002838134766
+          ],
+          "min": 18.412748336791992,
+          "max": 2767.5712890625,
+          "median": 20.77768898010254,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 20,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2767.5712890625, 656.6087646484375, 389.11712646484375, 229.3147430419922,
+            130.66293334960938, 83.70198822021484, 59.37689208984375, 45.86294937133789
+          ],
+          "min": 32.85577392578125,
+          "max": 2767.5712890625,
+          "median": 33.70039749145508,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 21,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2767.5712890625, 610.239013671875, 363.6940002441406, 216.3075714111328,
+            125.3418197631836, 81.92828369140625, 59.63027572631836, 47.46772384643555
+          ],
+          "min": 32.2645378112793,
+          "max": 2767.5712890625,
+          "median": 35.81195068359375,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 22,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2767.5712890625, 664.3792114257812, 387.17449951171875, 220.2772674560547,
+            117.31792449951172, 66.30278778076172, 37.754581451416016, 25.507568359375
+          ],
+          "min": 10.642230033874512,
+          "max": 2767.5712890625,
+          "median": 15.541034698486328,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 23,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2767.5712890625, 759.9904174804688, 458.88287353515625, 277.3736877441406,
+            166.13705444335938, 112.75697326660156, 84.12430572509766, 70.18804931640625
+          ],
+          "min": 0,
+          "max": 2767.5712890625,
+          "median": 54.81593322753906,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        },
+        {
+          "slot": 24,
+          "valid": 25,
+          "invalid": 0,
+          "first": [
+            2767.5712890625, 1017.3466186523438, 607.4517211914062, 362.7649230957031,
+            211.2398223876953, 137.7577667236328, 98.48286437988281, 78.6342544555664
+          ],
+          "min": 0,
+          "max": 2767.5712890625,
+          "median": 60.47489929199219,
+          "validArrivalGapMedianMs": 120,
+          "validArrivalGapMaxMs": 123
+        }
+      ]
+    }
+  }
+}

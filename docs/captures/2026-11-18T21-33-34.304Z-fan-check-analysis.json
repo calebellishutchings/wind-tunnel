@@ -1,0 +1,506 @@
+{
+  "file": "docs/captures/2026-11-18T21-33-34.304Z-fan-check.jsonl",
+  "rxBytes": 4073,
+  "frames": 230,
+  "unknownBytes": 0,
+  "trailingBytes": 0,
+  "messages": [
+    "Opened serial",
+    "Read command: 0",
+    "At frequency: 0",
+    "Turned all sensors off",
+    "Read command: 21",
+    "DAC output set to 0 mV",
+    "Read command: 5",
+    "At frequency: 100000",
+    "Also recieved sample amount: 0",
+    "Toggled local differential pressure sensors",
+    "Read command: 4",
+    "At frequency: 100000",
+    "Also recieved sample amount: 0",
+    "Toggled absolute pressure sensor",
+    "Read command: 21",
+    "DAC output set to 50 mV",
+    "Read command: 21",
+    "DAC output set to 100 mV",
+    "Read command: 21",
+    "DAC output set to 150 mV",
+    "Read command: 21",
+    "DAC output set to 0 mV",
+    "Read command: 21",
+    "DAC output set to 0 mV"
+  ],
+  "banks": {
+    "2": {
+      "frames": 0,
+      "deviceIntervalMs": {
+        "min": null,
+        "median": null,
+        "p95": null,
+        "max": null
+      },
+      "channels": [
+        {
+          "slot": 1,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 2,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 3,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 4,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        }
+      ]
+    },
+    "3": {
+      "frames": 0,
+      "deviceIntervalMs": {
+        "min": null,
+        "median": null,
+        "p95": null,
+        "max": null
+      },
+      "channels": [
+        {
+          "slot": 1,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 2,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 3,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 4,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        }
+      ]
+    },
+    "4": {
+      "frames": 113,
+      "deviceIntervalMs": {
+        "min": 110.065,
+        "median": 110.07,
+        "p95": 110.075,
+        "max": 110.082
+      },
+      "channels": [
+        {
+          "slot": 1,
+          "valid": 57,
+          "invalid": 56,
+          "first": [
+            99.2620620727539, 99.29991149902344, 99.2620620727539, 99.2809829711914,
+            99.31883239746094, 99.35667419433594, 99.31883239746094, 99.29991149902344
+          ],
+          "min": 99.2431411743164,
+          "max": 99.35667419433594,
+          "median": 99.29991149902344,
+          "validArrivalGapMedianMs": 219,
+          "validArrivalGapMaxMs": 660
+        }
+      ]
+    },
+    "5": {
+      "frames": 117,
+      "deviceIntervalMs": {
+        "min": 101.53,
+        "median": 110.069,
+        "p95": 110.093,
+        "max": 111.719
+      },
+      "channels": [
+        {
+          "slot": 1,
+          "valid": 117,
+          "invalid": 0,
+          "first": [
+            2337.236572265625, 444.27093505859375, 285.8199157714844, 178.04620361328125,
+            106.33783721923828, 58.616729736328125, 33.193626403808594, 18.412748336791992
+          ],
+          "min": -0.2533864676952362,
+          "max": 2337.236572265625,
+          "median": -0.16892430186271667,
+          "validArrivalGapMedianMs": 110,
+          "validArrivalGapMaxMs": 132
+        },
+        {
+          "slot": 2,
+          "valid": 117,
+          "invalid": 0,
+          "first": [
+            2767.5712890625, 662.0987548828125, 428.5609130859375, 269.6876220703125,
+            164.10995483398438, 93.83744049072266, 56.33625411987305, 34.54501724243164
+          ],
+          "min": 6.841434001922607,
+          "max": 2767.5712890625,
+          "median": 7.263744354248047,
+          "validArrivalGapMedianMs": 110,
+          "validArrivalGapMaxMs": 132
+        },
+        {
+          "slot": 3,
+          "valid": 0,
+          "invalid": 117,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 4,
+          "valid": 0,
+          "invalid": 117,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        }
+      ]
+    },
+    "6": {
+      "frames": 0,
+      "deviceIntervalMs": {
+        "min": null,
+        "median": null,
+        "p95": null,
+        "max": null
+      },
+      "channels": [
+        {
+          "slot": 1,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 2,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 3,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 4,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 5,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 6,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 7,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 8,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 9,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 10,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 11,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 12,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 13,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 14,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 15,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 16,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 17,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 18,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 19,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 20,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 21,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 22,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 23,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        },
+        {
+          "slot": 24,
+          "valid": 0,
+          "invalid": 0,
+          "first": [],
+          "min": null,
+          "max": null,
+          "median": null,
+          "validArrivalGapMedianMs": null,
+          "validArrivalGapMaxMs": null
+        }
+      ]
+    }
+  }
+}

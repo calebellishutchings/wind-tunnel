@@ -1,0 +1,1452 @@
+{
+  "at": "2026-11-18T21:53:51.995Z",
+  "logPath": "C:\\Users\\mario\\Downloads\\windtunnel\\Wind Tunnel Files\\wind-tunnel-app\\docs\\captures/2026-11-18T21-53-33.311Z-app-zero-check.jsonl",
+  "initial": {
+    "fan": {
+      "status": "confirmed",
+      "requestedMillivolts": 0,
+      "confirmedMillivolts": 0,
+      "error": null
+    },
+    "at": 1795038815258,
+    "airspeedAtmosphere": null,
+    "pressureSettlingUntil": 1795038817251,
+    "emergencyStopped": false,
+    "mode": "hardware",
+    "sourceVersion": 1,
+    "daq": {
+      "state": "connected",
+      "path": "COM10",
+      "baudRate": 115200,
+      "requestedFormat": "binary",
+      "format": "binary",
+      "receivedBytes": 165,
+      "sentBytes": 8,
+      "lastReceivedAt": 1795038815253,
+      "error": null,
+      "wireLog": [
+        {
+          "id": 1,
+          "at": 1795038814803,
+          "direction": "rx",
+          "bytes": 16,
+          "hex": "d0 4f 70 65 6e 65 64 20 73 65 72 69 61 6c 0d 0a",
+          "text": "\\xd0Opened serial\r\n",
+          "truncated": false
+        },
+        {
+          "id": 2,
+          "at": 1795038814804,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "d0",
+          "text": "\\xd0",
+          "truncated": false
+        },
+        {
+          "id": 3,
+          "at": 1795038814984,
+          "direction": "tx",
+          "bytes": 3,
+          "hex": "21 00 00",
+          "text": "!\\x00\\x00",
+          "truncated": false
+        },
+        {
+          "id": 4,
+          "at": 1795038814988,
+          "direction": "rx",
+          "bytes": 20,
+          "hex": "d0 52 65 61 64 20 63 6f 6d 6d 61 6e 64 3a 20 32 31 0d 0a d0",
+          "text": "\\xd0Read command: 21\r\n\\xd0",
+          "truncated": false
+        },
+        {
+          "id": 5,
+          "at": 1795038814990,
+          "direction": "rx",
+          "bytes": 26,
+          "hex": "d0 44 41 43 20 6f 75 74 70 75 74 20 73 65 74 20 74 6f 20 30 20 6d 56 0d 0a d0",
+          "text": "\\xd0DAC output set to 0 mV\r\n\\xd0",
+          "truncated": false
+        },
+        {
+          "id": 6,
+          "at": 1795038815249,
+          "direction": "tx",
+          "bytes": 5,
+          "hex": "01 00 01 86 a0",
+          "text": "\\x01\\x00\\x01\\x86\\xa0",
+          "truncated": false
+        },
+        {
+          "id": 7,
+          "at": 1795038815252,
+          "direction": "rx",
+          "bytes": 16,
+          "hex": "d0 52 65 61 64 20 63 6f 6d 6d 61 6e 64 3a 20 31",
+          "text": "\\xd0Read command: 1",
+          "truncated": false
+        },
+        {
+          "id": 8,
+          "at": 1795038815253,
+          "direction": "rx",
+          "bytes": 86,
+          "hex": "0d 0a d0 d0 41 74 20 66 72 65 71 75 65 6e 63 79 3a 20 31 30 30 30 30 30 0d 0a d0 d0 41 6c 73 6f 20 72 65 63 69 65 76 65 64 20 73 61 6d 70 6c 65 20 61 6d 6f 75 6e 74 3a 20 30 0d 0a d0 d0 54 75 72 6e 65 64 20 61 6c 6c 20 73 65 6e 73 6f 72 73 20 6f 6e 0d 0a d0",
+          "text": "\r\n\\xd0\\xd0At frequency: 100000\r\n\\xd0\\xd0Also recieved sample amount: 0\r\n\\xd0\\xd0Turned all sensors on\r\n\\xd0",
+          "truncated": false
+        }
+      ]
+    },
+    "acquisition": "running",
+    "samplePeriodMs": 100,
+    "measurements": {},
+    "diagnostics": [
+      {
+        "id": 1,
+        "at": 1795038814281,
+        "level": "info",
+        "message": "DAQ ready. Connect a board to receive binary measurements; no data is generated while disconnected."
+      },
+      {
+        "id": 2,
+        "at": 1795038814804,
+        "level": "info",
+        "message": "Opened serial\r\n"
+      },
+      {
+        "id": 3,
+        "at": 1795038814989,
+        "level": "info",
+        "message": "Read command: 21\r\n"
+      },
+      {
+        "id": 4,
+        "at": 1795038814990,
+        "level": "info",
+        "message": "DAC output set to 0 mV\r\n"
+      },
+      {
+        "id": 5,
+        "at": 1795038815251,
+        "level": "info",
+        "message": "DAQ COM10 connected at 115200 baud, 8N1. DAC zero verified; binary sensor acquisition started."
+      },
+      {
+        "id": 6,
+        "at": 1795038815253,
+        "level": "info",
+        "message": "Read command: 1\r\n"
+      },
+      {
+        "id": 7,
+        "at": 1795038815253,
+        "level": "info",
+        "message": "At frequency: 100000\r\n"
+      },
+      {
+        "id": 8,
+        "at": 1795038815253,
+        "level": "info",
+        "message": "Also recieved sample amount: 0\r\n"
+      },
+      {
+        "id": 9,
+        "at": 1795038815253,
+        "level": "info",
+        "message": "Turned all sensors on\r\n"
+      }
+    ],
+    "frameCount": 0,
+    "recording": {
+      "active": false,
+      "path": null,
+      "rows": 0,
+      "error": null
+    },
+    "calibrations": {},
+    "roomTemperatureC": 22
+  },
+  "samples": 100,
+  "rawAtmosphericNaNSnapshots": 53,
+  "effectiveAtmosphereAvailableSnapshots": 99,
+  "final": {
+    "fan": {
+      "status": "confirmed",
+      "requestedMillivolts": 0,
+      "confirmedMillivolts": 0,
+      "error": null
+    },
+    "at": 1795038831954,
+    "airspeedAtmosphere": {
+      "channelId": "abs_pressure",
+      "raw": 99.2809829711914,
+      "value": 99.2809829711914,
+      "unit": "kPa",
+      "quality": "good",
+      "deviceMicros": 2050272674,
+      "elapsedMicros": 16395261,
+      "receivedAt": 1795038831749,
+      "sequence": 5082,
+      "calibrationVersion": 0
+    },
+    "pressureSettlingUntil": 1795038817251,
+    "emergencyStopped": false,
+    "mode": "hardware",
+    "sourceVersion": 1,
+    "daq": {
+      "state": "connected",
+      "path": "COM10",
+      "baudRate": 115200,
+      "requestedFormat": "binary",
+      "format": "binary",
+      "receivedBytes": 24111,
+      "sentBytes": 8,
+      "lastReceivedAt": 1795038831868,
+      "error": null,
+      "wireLog": [
+        {
+          "id": 530,
+          "at": 1795038829815,
+          "direction": "rx",
+          "bytes": 21,
+          "hex": "05 7e fa ac bd db 54 e0 40 00 00 c0 7f 00 00 c0 7f 05 2c 17 7a",
+          "text": "\\x05~\\xfa\\xac\\xbd\\xdbT\\xe0@\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x05,\\x17z",
+          "truncated": false
+        },
+        {
+          "id": 531,
+          "at": 1795038829823,
+          "direction": "rx",
+          "bytes": 9,
+          "hex": "04 00 00 c0 7f a0 53 17 7a",
+          "text": "\\x04\\x00\\x00\\xc0\\x7f\\xa0S\\x17z",
+          "truncated": false
+        },
+        {
+          "id": 532,
+          "at": 1795038829932,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "06",
+          "text": "\\x06",
+          "truncated": false
+        },
+        {
+          "id": 533,
+          "at": 1795038829933,
+          "direction": "rx",
+          "bytes": 142,
+          "hex": "4f 4d 93 41 6b ec 0f 42 b2 23 87 41 97 84 8a 41 7e fa ac 40 e9 38 bf 41 94 1d e9 41 18 e6 d8 41 6c d8 ed 41 07 ed 5a 42 8e ca e9 41 67 ae 2f 41 25 ca 37 41 b5 38 a6 41 bd a0 c4 41 5a f3 11 42 25 ca b7 41 33 85 d5 41 54 a0 92 41 f8 08 fc 41 1f 81 09 42 a1 01 48 41 13 93 59 42 5c df 6f 42 c8 f9 18 7a 02 00 c0 c4 c5 00 40 4c c5 00 d0 07 c5 00 40 48 c4 5b fb 18 7a 03 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 8b fb 18 7a",
+          "text": "OM\\x93Ak\\xec\\x0fB\\xb2#\\x87A\\x97\\x84\\x8aA~\\xfa\\xac@\\xe98\\xbfA\\x94\\x1d\\xe9A\\x18\\xe6\\xd8Al\\xd8\\xedA\\x07\\xedZB\\x8e\\xca\\xe9Ag\\xae/A%\\xca7A\\xb58\\xa6A\\xbd\\xa0\\xc4AZ\\xf3\\x11B%\\xca\\xb7A3\\x85\\xd5AT\\xa0\\x92A\\xf8\\x08\\xfcA\\x1f\\x81\tB\\xa1\\x01HA\\x13\\x93YB\\\\xdfoB\\xc8\\xf9\\x18z\\x02\\x00\\xc0\\xc4\\xc5\\x00@L\\xc5\\x00\\xd0\\x07\\xc5\\x00@H\\xc4[\\xfb\\x18z\\x03\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x8b\\xfb\\x18z",
+          "truncated": false
+        },
+        {
+          "id": 534,
+          "at": 1795038829936,
+          "direction": "rx",
+          "bytes": 21,
+          "hex": "05 7e fa ac bd db 54 e0 40 00 00 c0 7f 00 00 c0 7f 9f 01 19 7a",
+          "text": "\\x05~\\xfa\\xac\\xbd\\xdbT\\xe0@\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x9f\\x01\\x19z",
+          "truncated": false
+        },
+        {
+          "id": 535,
+          "at": 1795038829944,
+          "direction": "rx",
+          "bytes": 9,
+          "hex": "04 00 00 c0 7f 20 29 19 7a",
+          "text": "\\x04\\x00\\x00\\xc0\\x7f )\\x19z",
+          "truncated": false
+        },
+        {
+          "id": 536,
+          "at": 1795038830053,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "06",
+          "text": "\\x06",
+          "truncated": false
+        },
+        {
+          "id": 537,
+          "at": 1795038830054,
+          "direction": "rx",
+          "bytes": 143,
+          "hex": "3f 54 95 41 f8 3b 0e 42 d3 15 83 41 97 84 8a 41 eb 76 9f 40 c7 46 c3 41 00 00 00 00 4a d1 d2 41 78 7e ec 41 38 d8 54 42 d5 01 e1 41 cb 84 23 41 7e fa 2c 41 d7 2a a2 41 90 08 ca 41 5a f3 11 42 2b 1d b7 41 4a d1 d2 41 4f 4d 93 41 f8 08 fc 41 91 31 0b 42 74 54 2e 41 f1 a0 5d 42 be 96 73 42 6c cf 1a 7a 02 00 a0 bd c5 00 70 51 c5 00 00 09 c5 00 c0 70 c4 00 d1 1a 7a 03 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 2e d1 1a 7a 05",
+          "text": "?T\\x95A\\xf8;\\x0eB\\xd3\\x15\\x83A\\x97\\x84\\x8aA\\xebv\\x9f@\\xc7F\\xc3A\\x00\\x00\\x00\\x00J\\xd1\\xd2Ax~\\xecA8\\xd8TB\\xd5\\x01\\xe1A\\xcb\\x84#A~\\xfa,A\\xd7*\\xa2A\\x90\\x08\\xcaAZ\\xf3\\x11B+\\x1d\\xb7AJ\\xd1\\xd2AOM\\x93A\\xf8\\x08\\xfcA\\x911\\x0bBtT.A\\xf1\\xa0]B\\xbe\\x96sBl\\xcf\\x1az\\x02\\x00\\xa0\\xbd\\xc5\\x00pQ\\xc5\\x00\\x00\t\\xc5\\x00\\xc0p\\xc4\\x00\\xd1\\x1az\\x03\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f.\\xd1\\x1az\\x05",
+          "truncated": false
+        },
+        {
+          "id": 538,
+          "at": 1795038830056,
+          "direction": "rx",
+          "bytes": 20,
+          "hex": "7e fa ac bd db 54 e0 40 00 00 c0 7f 00 00 c0 7f 42 d7 1a 7a",
+          "text": "~\\xfa\\xac\\xbd\\xdbT\\xe0@\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7fB\\xd7\\x1az",
+          "truncated": false
+        },
+        {
+          "id": 539,
+          "at": 1795038830064,
+          "direction": "rx",
+          "bytes": 9,
+          "hex": "04 00 00 c0 7f c4 fe 1a 7a",
+          "text": "\\x04\\x00\\x00\\xc0\\x7f\\xc4\\xfe\\x1az",
+          "truncated": false
+        },
+        {
+          "id": 540,
+          "at": 1795038830172,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "06",
+          "text": "\\x06",
+          "truncated": false
+        },
+        {
+          "id": 541,
+          "at": 1795038830175,
+          "direction": "rx",
+          "bytes": 142,
+          "hex": "39 01 96 41 f3 e8 0e 42 d8 68 82 41 8b de 8b 41 44 a7 94 40 9b ae c8 41 88 77 ea 41 76 69 cd 41 5c df ef 41 03 b9 4b 42 fb 46 dc 41 93 46 2a 41 52 62 32 41 02 c3 9c 41 38 d8 d4 41 65 99 10 42 2b 1d b7 41 23 8c d7 41 44 a7 94 41 e8 0f fe 41 03 e2 0c 42 47 bc 33 41 01 9a 5b 42 6c d8 6d 42 10 a5 1c 7a 02 00 38 c2 c5 00 80 45 c5 00 e0 10 c5 00 40 61 c4 9c a6 1c 7a 03 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f ca a6 1c 7a",
+          "text": "9\\x01\\x96A\\xf3\\xe8\\x0eB\\xd8h\\x82A\\x8b\\xde\\x8bAD\\xa7\\x94@\\x9b\\xae\\xc8A\\x88w\\xeaAvi\\xcdA\\\\xdf\\xefA\\x03\\xb9KB\\xfbF\\xdcA\\x93F*ARb2A\\x02\\xc3\\x9cA8\\xd8\\xd4Ae\\x99\\x10B+\\x1d\\xb7A#\\x8c\\xd7AD\\xa7\\x94A\\xe8\\x0f\\xfeA\\x03\\xe2\\x0cBG\\xbc3A\\x01\\x9a[Bl\\xd8mB\\x10\\xa5\\x1cz\\x02\\x008\\xc2\\xc5\\x00\\x80E\\xc5\\x00\\xe0\\x10\\xc5\\x00@a\\xc4\\x9c\\xa6\\x1cz\\x03\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\xca\\xa6\\x1cz",
+          "truncated": false
+        },
+        {
+          "id": 542,
+          "at": 1795038830177,
+          "direction": "rx",
+          "bytes": 21,
+          "hex": "05 7e fa 2c be db 54 e0 40 00 00 c0 7f 00 00 c0 7f fd ac 1c 7a",
+          "text": "\\x05~\\xfa,\\xbe\\xdbT\\xe0@\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\xfd\\xac\\x1cz",
+          "truncated": false
+        },
+        {
+          "id": 543,
+          "at": 1795038830184,
+          "direction": "rx",
+          "bytes": 9,
+          "hex": "04 8e 99 c6 42 81 d4 1c 7a",
+          "text": "\\x04\\x8e\\x99\\xc6B\\x81\\xd4\\x1cz",
+          "truncated": false
+        },
+        {
+          "id": 544,
+          "at": 1795038830292,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "06",
+          "text": "\\x06",
+          "truncated": false
+        },
+        {
+          "id": 545,
+          "at": 1795038830294,
+          "direction": "rx",
+          "bytes": 138,
+          "hex": "4a fa 93 41 f8 3b 0e 42 a2 2a 89 41 97 84 8a 41 67 ae af 40 64 70 cf 41 84 24 eb 41 5f 1d d0 41 72 2b ed 41 9b ae 48 42 fb 46 dc 41 47 bc 33 41 25 ca 37 41 02 c3 9c 41 fb 46 dc 41 76 92 0e 42 2b 1d b7 41 54 77 d1 41 08 16 9c 41 5b 12 02 42 03 e2 0c 42 54 77 51 41 44 7e 53 42 62 32 6f 42 b4 7a 1e 7a 02 00 40 bd c5 00 70 4c c5 00 50 04 c5 00 40 39 c4 3f 7c 1e 7a 03 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f",
+          "text": "J\\xfa\\x93A\\xf8;\\x0eB\\xa2*\\x89A\\x97\\x84\\x8aAg\\xae\\xaf@dp\\xcfA\\x84$\\xebA_\\x1d\\xd0Ar+\\xedA\\x9b\\xaeHB\\xfbF\\xdcAG\\xbc3A%\\xca7A\\x02\\xc3\\x9cA\\xfbF\\xdcAv\\x92\\x0eB+\\x1d\\xb7ATw\\xd1A\\x08\\x16\\x9cA[\\x12\\x02B\\x03\\xe2\\x0cBTwQAD~SBb2oB\\xb4z\\x1ez\\x02\\x00@\\xbd\\xc5\\x00pL\\xc5\\x00P\\x04\\xc5\\x00@9\\xc4?|\\x1ez\\x03\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f",
+          "truncated": false
+        },
+        {
+          "id": 546,
+          "at": 1795038830298,
+          "direction": "rx",
+          "bytes": 25,
+          "hex": "74 7c 1e 7a 05 7e fa 2c be db 54 e0 40 00 00 c0 7f 00 00 c0 7f 92 82 1e 7a",
+          "text": "t|\\x1ez\\x05~\\xfa,\\xbe\\xdbT\\xe0@\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x92\\x82\\x1ez",
+          "truncated": false
+        },
+        {
+          "id": 547,
+          "at": 1795038830306,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "04",
+          "text": "\\x04",
+          "truncated": false
+        },
+        {
+          "id": 548,
+          "at": 1795038830307,
+          "direction": "rx",
+          "bytes": 8,
+          "hex": "ee ac c6 42 1e aa 1e 7a",
+          "text": "\\xee\\xac\\xc6B\\x1e\\xaa\\x1ez",
+          "truncated": false
+        },
+        {
+          "id": 549,
+          "at": 1795038830413,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "06",
+          "text": "\\x06",
+          "truncated": false
+        },
+        {
+          "id": 550,
+          "at": 1795038830414,
+          "direction": "rx",
+          "bytes": 142,
+          "hex": "4f 4d 93 41 91 31 0b 42 6b ec 8f 41 97 84 8a 41 cd 99 c2 40 5f 1d d0 41 72 2b ed 41 2d 32 d6 41 72 2b ed 41 90 08 4a 42 fb 46 dc 41 47 bc 33 41 93 46 2a 41 d7 2a a2 41 e7 fa de 41 70 3f 0f 42 f9 31 bd 41 38 d8 d4 41 db 7d a1 41 e3 0e 01 42 7b e5 0d 42 62 32 6f 41 fd 65 4c 42 ce 8f 71 42 53 50 20 7a 02 00 90 be c5 00 a0 50 c5 00 70 0b c5 00 00 5d c4 de 51 20 7a 03 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 05 52 20 7a",
+          "text": "OM\\x93A\\x911\\x0bBk\\xec\\x8fA\\x97\\x84\\x8aA\\xcd\\x99\\xc2@_\\x1d\\xd0Ar+\\xedA-2\\xd6Ar+\\xedA\\x90\\x08JB\\xfbF\\xdcAG\\xbc3A\\x93F*A\\xd7*\\xa2A\\xe7\\xfa\\xdeAp?\\x0fB\\xf91\\xbdA8\\xd8\\xd4A\\xdb}\\xa1A\\xe3\\x0e\\x01B{\\xe5\rBb2oA\\xfdeLB\\xce\\x8fqBSP z\\x02\\x00\\x90\\xbe\\xc5\\x00\\xa0P\\xc5\\x00p\\x0b\\xc5\\x00\\x00]\\xc4\\xdeQ z\\x03\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x05R z",
+          "truncated": false
+        },
+        {
+          "id": 551,
+          "at": 1795038830417,
+          "direction": "rx",
+          "bytes": 21,
+          "hex": "05 7e fa 2c be db 54 e0 40 00 00 c0 7f 00 00 c0 7f 2a 58 20 7a",
+          "text": "\\x05~\\xfa,\\xbe\\xdbT\\xe0@\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f*X z",
+          "truncated": false
+        },
+        {
+          "id": 552,
+          "at": 1795038830424,
+          "direction": "rx",
+          "bytes": 5,
+          "hex": "04 dd 8f c6 42",
+          "text": "\\x04\\xdd\\x8f\\xc6B",
+          "truncated": false
+        },
+        {
+          "id": 553,
+          "at": 1795038830425,
+          "direction": "rx",
+          "bytes": 4,
+          "hex": "a8 7f 20 7a",
+          "text": "\\xa8\\x7f z",
+          "truncated": false
+        },
+        {
+          "id": 554,
+          "at": 1795038830533,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "06",
+          "text": "\\x06",
+          "truncated": false
+        },
+        {
+          "id": 555,
+          "at": 1795038830534,
+          "direction": "rx",
+          "bytes": 142,
+          "hex": "44 a7 94 41 14 db 0a 42 80 38 8d 41 9c d7 89 41 10 7e ba 40 a8 54 c7 41 62 32 ef 41 18 e6 d8 41 62 32 ef 41 5a ca 50 42 f7 f3 dc 41 3b 16 35 41 9c d7 09 41 ba 8b a5 41 cf ae e1 41 00 00 00 00 d8 3f c1 41 28 df d6 41 ba 8b a5 41 df bb 01 42 76 92 0e 42 62 32 6f 41 fd 65 4c 42 f5 d4 6c 42 f7 25 22 7a 02 00 90 bd c5 00 d0 50 c5 00 b0 11 c5 00 40 61 c4 88 27 22 7a 03 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f b6 27 22 7a",
+          "text": "D\\xa7\\x94A\\x14\\xdb\nB\\x808\\x8dA\\x9c\\xd7\\x89A\\x10~\\xba@\\xa8T\\xc7Ab2\\xefA\\x18\\xe6\\xd8Ab2\\xefAZ\\xcaPB\\xf7\\xf3\\xdcA;\\x165A\\x9c\\xd7\tA\\xba\\x8b\\xa5A\\xcf\\xae\\xe1A\\x00\\x00\\x00\\x00\\xd8?\\xc1A(\\xdf\\xd6A\\xba\\x8b\\xa5A\\xdf\\xbb\\x01Bv\\x92\\x0eBb2oA\\xfdeLB\\xf5\\xd4lB\\xf7%\"z\\x02\\x00\\x90\\xbd\\xc5\\x00\\xd0P\\xc5\\x00\\xb0\\x11\\xc5\\x00@a\\xc4\\x88'\"z\\x03\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\xb6'\"z",
+          "truncated": false
+        },
+        {
+          "id": 556,
+          "at": 1795038830536,
+          "direction": "rx",
+          "bytes": 21,
+          "hex": "05 7e fa ac bd c5 08 e3 40 00 00 c0 7f 00 00 c0 7f cf 2d 22 7a",
+          "text": "\\x05~\\xfa\\xac\\xbd\\xc5\\x08\\xe3@\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\xcf-\"z",
+          "truncated": false
+        },
+        {
+          "id": 557,
+          "at": 1795038830545,
+          "direction": "rx",
+          "bytes": 5,
+          "hex": "04 00 00 c0 7f",
+          "text": "\\x04\\x00\\x00\\xc0\\x7f",
+          "truncated": false
+        },
+        {
+          "id": 558,
+          "at": 1795038830546,
+          "direction": "rx",
+          "bytes": 4,
+          "hex": "53 55 22 7a",
+          "text": "SU\"z",
+          "truncated": false
+        },
+        {
+          "id": 559,
+          "at": 1795038830653,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "06",
+          "text": "\\x06",
+          "truncated": false
+        },
+        {
+          "id": 560,
+          "at": 1795038830655,
+          "direction": "rx",
+          "bytes": 143,
+          "hex": "33 ae 96 41 09 35 0c 42 9c d7 89 41 91 31 8b 41 bf de a4 40 d3 ec c1 41 5c df ef 41 28 df d6 41 6c d8 ed 41 c1 d4 53 42 ec 4d de 41 52 62 32 41 70 3f 0f 41 d7 2a a2 41 c5 08 e3 41 54 a0 12 42 a1 01 c8 41 4f 24 d2 41 93 46 aa 41 50 6c 03 42 00 00 00 00 6a c3 4e 41 c1 d4 53 42 f0 81 6d 42 9f fb 23 7a 02 00 48 bd c5 00 90 47 c5 00 e0 06 c5 00 00 66 c4 38 fd 23 7a 03 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 5d fd 23 7a 05",
+          "text": "3\\xae\\x96A\t5\\x0cB\\x9c\\xd7\\x89A\\x911\\x8bA\\xbf\\xde\\xa4@\\xd3\\xec\\xc1A\\\\xdf\\xefA(\\xdf\\xd6Al\\xd8\\xedA\\xc1\\xd4SB\\xecM\\xdeARb2Ap?\\x0fA\\xd7*\\xa2A\\xc5\\x08\\xe3AT\\xa0\\x12B\\xa1\\x01\\xc8AO$\\xd2A\\x93F\\xaaAPl\\x03B\\x00\\x00\\x00\\x00j\\xc3NA\\xc1\\xd4SB\\xf0\\x81mB\\x9f\\xfb#z\\x02\\x00H\\xbd\\xc5\\x00\\x90G\\xc5\\x00\\xe0\\x06\\xc5\\x00\\x00f\\xc48\\xfd#z\\x03\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f]\\xfd#z\\x05",
+          "truncated": false
+        },
+        {
+          "id": 561,
+          "at": 1795038830657,
+          "direction": "rx",
+          "bytes": 20,
+          "hex": "7e fa ac bd c5 08 e3 40 00 00 c0 7f 00 00 c0 7f 75 03 24 7a",
+          "text": "~\\xfa\\xac\\xbd\\xc5\\x08\\xe3@\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7fu\\x03$z",
+          "truncated": false
+        },
+        {
+          "id": 562,
+          "at": 1795038830665,
+          "direction": "rx",
+          "bytes": 9,
+          "hex": "04 00 00 c0 7f f5 2a 24 7a",
+          "text": "\\x04\\x00\\x00\\xc0\\x7f\\xf5*$z",
+          "truncated": false
+        },
+        {
+          "id": 563,
+          "at": 1795038830773,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "06",
+          "text": "\\x06",
+          "truncated": false
+        },
+        {
+          "id": 564,
+          "at": 1795038830774,
+          "direction": "rx",
+          "bytes": 142,
+          "hex": "5f 46 91 41 00 00 00 00 df bb 81 41 91 31 8b 41 18 0f 9a 40 c2 f3 c3 41 62 32 ef 41 4f 24 d2 41 67 85 ee 41 00 00 00 00 d5 01 e1 41 02 c3 1c 41 f7 1c 1e 41 fc 6f 9d 41 f7 f3 dc 41 6b ec 0f 42 a1 01 c8 41 23 8c d7 41 a5 3f a8 41 50 6c 03 42 76 92 0e 42 25 ca 37 41 94 3c 59 42 67 85 6e 42 42 d1 25 7a 02 00 b0 bd c5 00 00 58 c5 00 40 05 c5 00 40 48 c4 eb d2 25 7a 03 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 2c d3 25 7a",
+          "text": "_F\\x91A\\x00\\x00\\x00\\x00\\xdf\\xbb\\x81A\\x911\\x8bA\\x18\\x0f\\x9a@\\xc2\\xf3\\xc3Ab2\\xefAO$\\xd2Ag\\x85\\xeeA\\x00\\x00\\x00\\x00\\xd5\\x01\\xe1A\\x02\\xc3\\x1cA\\xf7\\x1c\\x1eA\\xfco\\x9dA\\xf7\\xf3\\xdcAk\\xec\\x0fB\\xa1\\x01\\xc8A#\\x8c\\xd7A\\xa5?\\xa8APl\\x03Bv\\x92\\x0eB%\\xca7A\\x94<YBg\\x85nBB\\xd1%z\\x02\\x00\\xb0\\xbd\\xc5\\x00\\x00X\\xc5\\x00@\\x05\\xc5\\x00@H\\xc4\\xeb\\xd2%z\\x03\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f,\\xd3%z",
+          "truncated": false
+        },
+        {
+          "id": 565,
+          "at": 1795038830776,
+          "direction": "rx",
+          "bytes": 21,
+          "hex": "05 7e fa ac bd db 54 e0 40 00 00 c0 7f 00 00 c0 7f 4a d9 25 7a",
+          "text": "\\x05~\\xfa\\xac\\xbd\\xdbT\\xe0@\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7fJ\\xd9%z",
+          "truncated": false
+        },
+        {
+          "id": 566,
+          "at": 1795038830785,
+          "direction": "rx",
+          "bytes": 9,
+          "hex": "04 8e 99 c6 42 cb 00 26 7a",
+          "text": "\\x04\\x8e\\x99\\xc6B\\xcb\\x00&z",
+          "truncated": false
+        },
+        {
+          "id": 567,
+          "at": 1795038830894,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "06",
+          "text": "\\x06",
+          "truncated": false
+        },
+        {
+          "id": 568,
+          "at": 1795038830896,
+          "direction": "rx",
+          "bytes": 142,
+          "hex": "3f 54 95 41 a2 2a 09 42 c3 1c 85 41 97 84 8a 41 d7 2a a2 40 8c b5 ca 41 1b fb f7 41 6f 16 ce 41 72 2b ed 41 44 7e 53 42 e1 a7 df 41 9c d7 09 41 b5 38 26 41 f1 c9 9e 41 23 8c d7 41 76 92 0e 42 9b ae c8 41 38 d8 d4 41 e1 d0 a0 41 6c 0b 00 42 14 db 0a 42 10 7e 3a 41 9a 8f 58 42 e5 db 6e 42 e6 a6 27 7a 02 00 b0 c0 c5 00 c0 4f c5 00 70 04 c5 00 80 4e c4 8f a8 27 7a 03 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f ca a8 27 7a",
+          "text": "?T\\x95A\\xa2*\tB\\xc3\\x1c\\x85A\\x97\\x84\\x8aA\\xd7*\\xa2@\\x8c\\xb5\\xcaA\\x1b\\xfb\\xf7Ao\\x16\\xceAr+\\xedAD~SB\\xe1\\xa7\\xdfA\\x9c\\xd7\tA\\xb58&A\\xf1\\xc9\\x9eA#\\x8c\\xd7Av\\x92\\x0eB\\x9b\\xae\\xc8A8\\xd8\\xd4A\\xe1\\xd0\\xa0Al\\x0b\\x00B\\x14\\xdb\nB\\x10~:A\\x9a\\x8fXB\\xe5\\xdbnB\\xe6\\xa6'z\\x02\\x00\\xb0\\xc0\\xc5\\x00\\xc0O\\xc5\\x00p\\x04\\xc5\\x00\\x80N\\xc4\\x8f\\xa8'z\\x03\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\xca\\xa8'z",
+          "truncated": false
+        },
+        {
+          "id": 569,
+          "at": 1795038830897,
+          "direction": "rx",
+          "bytes": 21,
+          "hex": "05 7e fa ac bd db 54 e0 40 00 00 c0 7f 00 00 c0 7f df ae 27 7a",
+          "text": "\\x05~\\xfa\\xac\\xbd\\xdbT\\xe0@\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\xdf\\xae'z",
+          "truncated": false
+        },
+        {
+          "id": 570,
+          "at": 1795038830905,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "04",
+          "text": "\\x04",
+          "truncated": false
+        },
+        {
+          "id": 571,
+          "at": 1795038830906,
+          "direction": "rx",
+          "bytes": 8,
+          "hex": "00 00 c0 7f 60 d6 27 7a",
+          "text": "\\x00\\x00\\xc0\\x7f`\\xd6'z",
+          "truncated": false
+        },
+        {
+          "id": 572,
+          "at": 1795038831014,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "06",
+          "text": "\\x06",
+          "truncated": false
+        },
+        {
+          "id": 573,
+          "at": 1795038831016,
+          "direction": "rx",
+          "bytes": 163,
+          "hex": "28 08 98 41 9c d7 09 42 d8 68 82 41 9c d7 89 41 3b 16 b5 40 a8 54 c7 41 21 4e f7 41 5a ca d0 41 57 8c f0 41 5f 1d 50 42 2d 32 d6 41 91 31 0b 41 b5 38 26 41 c5 31 a4 41 0c 40 da 41 6b ec 0f 42 bd a0 c4 41 4a d1 d2 41 db 7d a1 41 d3 15 03 42 86 8b 0c 42 13 93 59 41 5a ca 50 42 57 8c 70 42 86 7c 29 7a 02 00 98 bc c5 00 b0 47 c5 00 80 06 c5 00 c0 74 c4 16 7e 29 7a 03 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 4c 7e 29 7a 05 7e fa ac bd db 54 e0 40 00 00 c0 7f 00 00 c0 7f 68 84 29 7a",
+          "text": "(\\x08\\x98A\\x9c\\xd7\tB\\xd8h\\x82A\\x9c\\xd7\\x89A;\\x16\\xb5@\\xa8T\\xc7A!N\\xf7AZ\\xca\\xd0AW\\x8c\\xf0A_\\x1dPB-2\\xd6A\\x911\\x0bA\\xb58&A\\xc51\\xa4A\\x0c@\\xdaAk\\xec\\x0fB\\xbd\\xa0\\xc4AJ\\xd1\\xd2A\\xdb}\\xa1A\\xd3\\x15\\x03B\\x86\\x8b\\x0cB\\x13\\x93YAZ\\xcaPBW\\x8cpB\\x86|)z\\x02\\x00\\x98\\xbc\\xc5\\x00\\xb0G\\xc5\\x00\\x80\\x06\\xc5\\x00\\xc0t\\xc4\\x16~)z\\x03\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7fL~)z\\x05~\\xfa\\xac\\xbd\\xdbT\\xe0@\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7fh\\x84)z",
+          "truncated": false
+        },
+        {
+          "id": 574,
+          "at": 1795038831026,
+          "direction": "rx",
+          "bytes": 9,
+          "hex": "04 3e a3 c6 42 e9 ab 29 7a",
+          "text": "\\x04>\\xa3\\xc6B\\xe9\\xab)z",
+          "truncated": false
+        },
+        {
+          "id": 575,
+          "at": 1795038831134,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "06",
+          "text": "\\x06",
+          "truncated": false
+        },
+        {
+          "id": 576,
+          "at": 1795038831135,
+          "direction": "rx",
+          "bytes": 142,
+          "hex": "5f 46 91 41 ed 95 0f 42 8b de 8b 41 97 84 8a 41 8c b5 ca 40 80 0f cc 41 21 4e f7 41 23 8c d7 41 84 24 eb 41 6f 16 4e 42 64 70 cf 41 39 01 16 41 74 54 2e 41 aa 92 a7 41 cf ae e1 41 d7 49 12 42 cd 99 c2 41 23 8c d7 41 39 01 96 41 9c d7 09 42 e3 ef 10 42 e8 0f 7e 41 ed 6c 4e 42 35 9a 74 42 26 52 2b 7a 02 00 90 be c5 00 70 52 c5 00 60 13 c5 00 c0 82 c4 c1 53 2b 7a 03 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f f8 53 2b 7a",
+          "text": "_F\\x91A\\xed\\x95\\x0fB\\x8b\\xde\\x8bA\\x97\\x84\\x8aA\\x8c\\xb5\\xca@\\x80\\x0f\\xccA!N\\xf7A#\\x8c\\xd7A\\x84$\\xebAo\\x16NBdp\\xcfA9\\x01\\x16AtT.A\\xaa\\x92\\xa7A\\xcf\\xae\\xe1A\\xd7I\\x12B\\xcd\\x99\\xc2A#\\x8c\\xd7A9\\x01\\x96A\\x9c\\xd7\tB\\xe3\\xef\\x10B\\xe8\\x0f~A\\xedlNB5\\x9atB&R+z\\x02\\x00\\x90\\xbe\\xc5\\x00pR\\xc5\\x00`\\x13\\xc5\\x00\\xc0\\x82\\xc4\\xc1S+z\\x03\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\xf8S+z",
+          "truncated": false
+        },
+        {
+          "id": 577,
+          "at": 1795038831137,
+          "direction": "rx",
+          "bytes": 21,
+          "hex": "05 7e fa ac bd db 54 e0 40 00 00 c0 7f 00 00 c0 7f 25 5a 2b 7a",
+          "text": "\\x05~\\xfa\\xac\\xbd\\xdbT\\xe0@\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f%Z+z",
+          "truncated": false
+        },
+        {
+          "id": 578,
+          "at": 1795038831146,
+          "direction": "rx",
+          "bytes": 9,
+          "hex": "04 2d 86 c6 42 a7 81 2b 7a",
+          "text": "\\x04-\\x86\\xc6B\\xa7\\x81+z",
+          "truncated": false
+        },
+        {
+          "id": 579,
+          "at": 1795038831254,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "06",
+          "text": "\\x06",
+          "truncated": false
+        },
+        {
+          "id": 580,
+          "at": 1795038831256,
+          "direction": "rx",
+          "bytes": 142,
+          "hex": "54 a0 92 41 fe 8e 0d 42 54 a0 92 41 97 84 8a 41 10 7e ba 40 4f 24 d2 41 ef 62 fd 41 0c 40 da 41 5c df ef 41 ed 6c 4e 42 4f 24 d2 41 5a f3 11 41 d8 3f 41 41 c5 31 a4 41 88 77 ea 41 5a f3 11 42 f9 31 bd 41 54 77 d1 41 4f 4d 93 41 19 2e 0a 42 f8 3b 0e 42 c8 6f 84 41 d7 20 51 42 d3 e2 70 42 ca 27 2d 7a 02 00 18 bf c5 00 80 54 c5 00 e0 10 c5 00 e0 87 c4 59 29 2d 7a 03 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 91 29 2d 7a",
+          "text": "T\\xa0\\x92A\\xfe\\x8e\rBT\\xa0\\x92A\\x97\\x84\\x8aA\\x10~\\xba@O$\\xd2A\\xefb\\xfdA\\x0c@\\xdaA\\\\xdf\\xefA\\xedlNBO$\\xd2AZ\\xf3\\x11A\\xd8?AA\\xc51\\xa4A\\x88w\\xeaAZ\\xf3\\x11B\\xf91\\xbdATw\\xd1AOM\\x93A\\x19.\nB\\xf8;\\x0eB\\xc8o\\x84A\\xd7 QB\\xd3\\xe2pB\\xca'-z\\x02\\x00\\x18\\xbf\\xc5\\x00\\x80T\\xc5\\x00\\xe0\\x10\\xc5\\x00\\xe0\\x87\\xc4Y)-z\\x03\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x91)-z",
+          "truncated": false
+        },
+        {
+          "id": 581,
+          "at": 1795038831257,
+          "direction": "rx",
+          "bytes": 21,
+          "hex": "05 7e fa 2c be db 54 e0 40 00 00 c0 7f 00 00 c0 7f ba 2f 2d 7a",
+          "text": "\\x05~\\xfa,\\xbe\\xdbT\\xe0@\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\xba/-z",
+          "truncated": false
+        },
+        {
+          "id": 582,
+          "at": 1795038831266,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "04",
+          "text": "\\x04",
+          "truncated": false
+        },
+        {
+          "id": 583,
+          "at": 1795038831268,
+          "direction": "rx",
+          "bytes": 8,
+          "hex": "00 00 c0 7f 48 57 2d 7a",
+          "text": "\\x00\\x00\\xc0\\x7fHW-z",
+          "truncated": false
+        },
+        {
+          "id": 584,
+          "at": 1795038831376,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "06",
+          "text": "\\x06",
+          "truncated": false
+        },
+        {
+          "id": 585,
+          "at": 1795038831377,
+          "direction": "rx",
+          "bytes": 163,
+          "hex": "28 08 98 41 fe 8e 0d 42 91 31 8b 41 97 84 8a 41 d7 2a a2 40 86 62 cb 41 6c 0b 00 42 23 8c d7 41 72 2b ed 41 dd 73 50 42 00 00 00 00 00 00 00 00 47 bc 33 41 f1 c9 9e 41 7e d1 eb 41 6b ec 0f 42 2b 1d b7 41 23 8c d7 41 4a fa 93 41 14 db 0a 42 91 31 0b 42 dd 69 7f 41 9f e2 57 42 84 24 6b 42 68 fd 2e 7a 02 00 08 bf c5 00 50 47 c5 00 e0 0d c5 00 40 66 c4 f7 fe 2e 7a 03 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 23 ff 2e 7a 05 7e fa 2c be db 54 e0 40 00 00 c0 7f 00 00 c0 7f 45 05 2f 7a",
+          "text": "(\\x08\\x98A\\xfe\\x8e\rB\\x911\\x8bA\\x97\\x84\\x8aA\\xd7*\\xa2@\\x86b\\xcbAl\\x0b\\x00B#\\x8c\\xd7Ar+\\xedA\\xddsPB\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00G\\xbc3A\\xf1\\xc9\\x9eA~\\xd1\\xebAk\\xec\\x0fB+\\x1d\\xb7A#\\x8c\\xd7AJ\\xfa\\x93A\\x14\\xdb\nB\\x911\\x0bB\\xddi\\x7fA\\x9f\\xe2WB\\x84$kBh\\xfd.z\\x02\\x00\\x08\\xbf\\xc5\\x00PG\\xc5\\x00\\xe0\r\\xc5\\x00@f\\xc4\\xf7\\xfe.z\\x03\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f#\\xff.z\\x05~\\xfa,\\xbe\\xdbT\\xe0@\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7fE\\x05/z",
+          "truncated": false
+        },
+        {
+          "id": 586,
+          "at": 1795038831386,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "04",
+          "text": "\\x04",
+          "truncated": false
+        },
+        {
+          "id": 587,
+          "at": 1795038831388,
+          "direction": "rx",
+          "bytes": 8,
+          "hex": "00 00 c0 7f d3 2c 2f 7a",
+          "text": "\\x00\\x00\\xc0\\x7f\\xd3,/z",
+          "truncated": false
+        },
+        {
+          "id": 588,
+          "at": 1795038831496,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "06",
+          "text": "\\x06",
+          "truncated": false
+        },
+        {
+          "id": 589,
+          "at": 1795038831496,
+          "direction": "rx",
+          "bytes": 143,
+          "hex": "4f 4d 93 41 6b ec 0f 42 97 84 8a 41 97 84 8a 41 5a f3 91 40 ef 8b be 41 ef 62 fd 41 00 00 00 00 72 2b ed 41 54 77 51 42 07 ed da 41 c5 08 e3 40 e1 d0 20 41 fc 6f 9d 41 00 00 00 00 00 00 00 00 25 ca b7 41 3e 2b d4 41 4a fa 93 41 35 cd 06 42 bd c9 05 42 57 8c 70 41 00 00 00 00 88 77 6a 42 10 d3 30 7a 02 00 f0 c1 c5 00 10 43 c5 00 90 07 c5 00 00 82 c4 a4 d4 30 7a 03 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f d6 d4 30 7a 05",
+          "text": "OM\\x93Ak\\xec\\x0fB\\x97\\x84\\x8aA\\x97\\x84\\x8aAZ\\xf3\\x91@\\xef\\x8b\\xbeA\\xefb\\xfdA\\x00\\x00\\x00\\x00r+\\xedATwQB\\x07\\xed\\xdaA\\xc5\\x08\\xe3@\\xe1\\xd0 A\\xfco\\x9dA\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00%\\xca\\xb7A>+\\xd4AJ\\xfa\\x93A5\\xcd\\x06B\\xbd\\xc9\\x05BW\\x8cpA\\x00\\x00\\x00\\x00\\x88wjB\\x10\\xd30z\\x02\\x00\\xf0\\xc1\\xc5\\x00\\x10C\\xc5\\x00\\x90\\x07\\xc5\\x00\\x00\\x82\\xc4\\xa4\\xd40z\\x03\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\xd6\\xd40z\\x05",
+          "truncated": false
+        },
+        {
+          "id": 590,
+          "at": 1795038831497,
+          "direction": "rx",
+          "bytes": 20,
+          "hex": "7e fa 2c be db 54 e0 40 00 00 c0 7f 00 00 c0 7f f8 da 30 7a",
+          "text": "~\\xfa,\\xbe\\xdbT\\xe0@\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\xf8\\xda0z",
+          "truncated": false
+        },
+        {
+          "id": 591,
+          "at": 1795038831507,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "04",
+          "text": "\\x04",
+          "truncated": false
+        },
+        {
+          "id": 592,
+          "at": 1795038831507,
+          "direction": "rx",
+          "bytes": 8,
+          "hex": "dd 8f c6 42 88 02 31 7a",
+          "text": "\\xdd\\x8f\\xc6B\\x88\\x021z",
+          "truncated": false
+        },
+        {
+          "id": 593,
+          "at": 1795038831615,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "06",
+          "text": "\\x06",
+          "truncated": false
+        },
+        {
+          "id": 594,
+          "at": 1795038831616,
+          "direction": "rx",
+          "bytes": 142,
+          "hex": "5f 46 91 41 70 3f 0f 42 ce c2 83 41 9c d7 89 41 02 c3 9c 40 04 d8 bb 41 ff 5b fb 41 76 69 cd 41 62 32 ef 41 4f 24 52 42 fb 46 dc 41 5f 1d d0 40 4f 4d 13 41 db 7d a1 41 ba 62 e4 41 f3 e8 0e 42 3b 16 b5 41 4a d1 d2 41 4a fa 93 41 ef 62 fd 41 67 b8 00 42 84 24 6b 41 01 9a 5b 42 fb 27 6c 42 b5 a8 32 7a 02 00 68 c1 c5 00 90 44 c5 00 a0 0d c5 00 c0 66 c4 42 aa 32 7a 03 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 75 aa 32 7a",
+          "text": "_F\\x91Ap?\\x0fB\\xce\\xc2\\x83A\\x9c\\xd7\\x89A\\x02\\xc3\\x9c@\\x04\\xd8\\xbbA\\xff[\\xfbAvi\\xcdAb2\\xefAO$RB\\xfbF\\xdcA_\\x1d\\xd0@OM\\x13A\\xdb}\\xa1A\\xbab\\xe4A\\xf3\\xe8\\x0eB;\\x16\\xb5AJ\\xd1\\xd2AJ\\xfa\\x93A\\xefb\\xfdAg\\xb8\\x00B\\x84$kA\\x01\\x9a[B\\xfb'lB\\xb5\\xa82z\\x02\\x00h\\xc1\\xc5\\x00\\x90D\\xc5\\x00\\xa0\r\\xc5\\x00\\xc0f\\xc4B\\xaa2z\\x03\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7fu\\xaa2z",
+          "truncated": false
+        },
+        {
+          "id": 595,
+          "at": 1795038831617,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "05",
+          "text": "\\x05",
+          "truncated": false
+        },
+        {
+          "id": 596,
+          "at": 1795038831617,
+          "direction": "rx",
+          "bytes": 20,
+          "hex": "7e fa ac bd db 54 e0 40 00 00 c0 7f 00 00 c0 7f 97 b0 32 7a",
+          "text": "~\\xfa\\xac\\xbd\\xdbT\\xe0@\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x97\\xb02z",
+          "truncated": false
+        },
+        {
+          "id": 597,
+          "at": 1795038831627,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "04",
+          "text": "\\x04",
+          "truncated": false
+        },
+        {
+          "id": 598,
+          "at": 1795038831628,
+          "direction": "rx",
+          "bytes": 8,
+          "hex": "dd 8f c6 42 1f d8 32 7a",
+          "text": "\\xdd\\x8f\\xc6B\\x1f\\xd82z",
+          "truncated": false
+        },
+        {
+          "id": 599,
+          "at": 1795038831735,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "06",
+          "text": "\\x06",
+          "truncated": false
+        },
+        {
+          "id": 600,
+          "at": 1795038831736,
+          "direction": "rx",
+          "bytes": 142,
+          "hex": "28 08 98 41 6b ec 0f 42 e9 61 80 41 97 84 8a 41 52 62 b2 40 a1 01 c8 41 dd 69 ff 41 6a c3 ce 41 78 7e ec 41 64 70 4f 42 f1 a0 dd 41 cd 99 c2 40 2e 5b 17 41 b5 38 a6 41 ca 5b e2 41 5f 46 11 42 0a 2b bb 41 18 e6 d8 41 e7 23 a0 41 03 af fa 41 2f 7a 07 42 21 4e 77 41 fb 46 5c 42 c9 3c 72 42 58 7e 34 7a 02 00 08 c1 c5 00 20 53 c5 00 10 0c c5 00 c0 5b c4 d4 7f 34 7a 03 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 0d 80 34 7a",
+          "text": "(\\x08\\x98Ak\\xec\\x0fB\\xe9a\\x80A\\x97\\x84\\x8aARb\\xb2@\\xa1\\x01\\xc8A\\xddi\\xffAj\\xc3\\xceAx~\\xecAdpOB\\xf1\\xa0\\xddA\\xcd\\x99\\xc2@.[\\x17A\\xb58\\xa6A\\xca[\\xe2A_F\\x11B\n+\\xbbA\\x18\\xe6\\xd8A\\xe7#\\xa0A\\x03\\xaf\\xfaA/z\\x07B!NwA\\xfbF\\B\\xc9<rBX~4z\\x02\\x00\\x08\\xc1\\xc5\\x00 S\\xc5\\x00\\x10\\x0c\\xc5\\x00\\xc0[\\xc4\\xd4\\x7f4z\\x03\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\r\\x804z",
+          "truncated": false
+        },
+        {
+          "id": 601,
+          "at": 1795038831737,
+          "direction": "rx",
+          "bytes": 21,
+          "hex": "05 7e fa ac bd db 54 e0 40 00 00 c0 7f 00 00 c0 7f 21 86 34 7a",
+          "text": "\\x05~\\xfa\\xac\\xbd\\xdbT\\xe0@\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f!\\x864z",
+          "truncated": false
+        },
+        {
+          "id": 602,
+          "at": 1795038831747,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "04",
+          "text": "\\x04",
+          "truncated": false
+        },
+        {
+          "id": 603,
+          "at": 1795038831749,
+          "direction": "rx",
+          "bytes": 8,
+          "hex": "dd 8f c6 42 a2 ad 34 7a",
+          "text": "\\xdd\\x8f\\xc6B\\xa2\\xad4z",
+          "truncated": false
+        },
+        {
+          "id": 604,
+          "at": 1795038831855,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "06",
+          "text": "\\x06",
+          "truncated": false
+        },
+        {
+          "id": 605,
+          "at": 1795038831856,
+          "direction": "rx",
+          "bytes": 142,
+          "hex": "4f 4d 93 41 80 38 0d 42 ce c2 83 41 91 31 8b 41 cd 99 c2 40 6a c3 ce 41 6c 0b 00 42 33 85 d5 41 62 32 ef 41 e8 19 4f 42 07 ed da 41 b8 4d c5 40 eb 76 1f 41 ba 8b a5 41 07 ed da 41 54 a0 12 42 04 d8 bb 41 5a ca d0 41 f7 1c 9e 41 e9 61 00 42 91 31 0b 42 00 00 00 00 6e f7 5d 42 b4 f0 74 42 00 54 36 7a 02 00 90 bb c5 00 10 57 c5 00 80 08 c5 00 c0 4e c4 8b 55 36 7a 03 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f 00 00 c0 7f c6 55 36 7a",
+          "text": "OM\\x93A\\x808\rB\\xce\\xc2\\x83A\\x911\\x8bA\\xcd\\x99\\xc2@j\\xc3\\xceAl\\x0b\\x00B3\\x85\\xd5Ab2\\xefA\\xe8\\x19OB\\x07\\xed\\xdaA\\xb8M\\xc5@\\xebv\\x1fA\\xba\\x8b\\xa5A\\x07\\xed\\xdaAT\\xa0\\x12B\\x04\\xd8\\xbbAZ\\xca\\xd0A\\xf7\\x1c\\x9eA\\xe9a\\x00B\\x911\\x0bB\\x00\\x00\\x00\\x00n\\xf7]B\\xb4\\xf0tB\\x00T6z\\x02\\x00\\x90\\xbb\\xc5\\x00\\x10W\\xc5\\x00\\x80\\x08\\xc5\\x00\\xc0N\\xc4\\x8bU6z\\x03\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\xc6U6z",
+          "truncated": false
+        },
+        {
+          "id": 606,
+          "at": 1795038831857,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "05",
+          "text": "\\x05",
+          "truncated": false
+        },
+        {
+          "id": 607,
+          "at": 1795038831857,
+          "direction": "rx",
+          "bytes": 20,
+          "hex": "7e fa ac bd c5 08 e3 40 00 00 c0 7f 00 00 c0 7f eb 5b 36 7a",
+          "text": "~\\xfa\\xac\\xbd\\xc5\\x08\\xe3@\\x00\\x00\\xc0\\x7f\\x00\\x00\\xc0\\x7f\\xeb[6z",
+          "truncated": false
+        },
+        {
+          "id": 608,
+          "at": 1795038831867,
+          "direction": "rx",
+          "bytes": 1,
+          "hex": "04",
+          "text": "\\x04",
+          "truncated": false
+        },
+        {
+          "id": 609,
+          "at": 1795038831868,
+          "direction": "rx",
+          "bytes": 8,
+          "hex": "00 00 c0 7f 70 83 36 7a",
+          "text": "\\x00\\x00\\xc0\\x7fp\\x836z",
+          "truncated": false
+        }
+      ]
+    },
+    "acquisition": "running",
+    "samplePeriodMs": 100,
+    "measurements": {
+      "strain1": {
+        "channelId": "strain1",
+        "raw": -6002,
+        "value": -6002,
+        "unit": "raw",
+        "quality": "good",
+        "deviceMicros": 2050381195,
+        "elapsedMicros": 16503782,
+        "receivedAt": 1795038831856,
+        "sequence": 5107,
+        "calibrationVersion": 0
+      },
+      "strain2": {
+        "channelId": "strain2",
+        "raw": -3441,
+        "value": -3441,
+        "unit": "raw",
+        "quality": "good",
+        "deviceMicros": 2050381195,
+        "elapsedMicros": 16503782,
+        "receivedAt": 1795038831856,
+        "sequence": 5108,
+        "calibrationVersion": 0
+      },
+      "strain3": {
+        "channelId": "strain3",
+        "raw": -2184,
+        "value": -2184,
+        "unit": "raw",
+        "quality": "good",
+        "deviceMicros": 2050381195,
+        "elapsedMicros": 16503782,
+        "receivedAt": 1795038831856,
+        "sequence": 5109,
+        "calibrationVersion": 0
+      },
+      "strain4": {
+        "channelId": "strain4",
+        "raw": -827,
+        "value": -827,
+        "unit": "raw",
+        "quality": "good",
+        "deviceMicros": 2050381195,
+        "elapsedMicros": 16503782,
+        "receivedAt": 1795038831856,
+        "sequence": 5110,
+        "calibrationVersion": 0
+      },
+      "temp1": {
+        "channelId": "temp1",
+        "raw": null,
+        "rawSpecial": "NaN",
+        "value": null,
+        "unit": "°C",
+        "quality": "invalid",
+        "deviceMicros": 2050381254,
+        "elapsedMicros": 16503841,
+        "receivedAt": 1795038831856,
+        "sequence": 5111,
+        "calibrationVersion": 0
+      },
+      "temp2": {
+        "channelId": "temp2",
+        "raw": null,
+        "rawSpecial": "NaN",
+        "value": null,
+        "unit": "°C",
+        "quality": "invalid",
+        "deviceMicros": 2050381254,
+        "elapsedMicros": 16503841,
+        "receivedAt": 1795038831856,
+        "sequence": 5112,
+        "calibrationVersion": 0
+      },
+      "temp3": {
+        "channelId": "temp3",
+        "raw": null,
+        "rawSpecial": "NaN",
+        "value": null,
+        "unit": "°C",
+        "quality": "invalid",
+        "deviceMicros": 2050381254,
+        "elapsedMicros": 16503841,
+        "receivedAt": 1795038831856,
+        "sequence": 5113,
+        "calibrationVersion": 0
+      },
+      "temp4": {
+        "channelId": "temp4",
+        "raw": null,
+        "rawSpecial": "NaN",
+        "value": null,
+        "unit": "°C",
+        "quality": "invalid",
+        "deviceMicros": 2050381254,
+        "elapsedMicros": 16503841,
+        "receivedAt": 1795038831856,
+        "sequence": 5114,
+        "calibrationVersion": 0
+      },
+      "press1": {
+        "channelId": "press1",
+        "raw": -0.08446215093135834,
+        "value": -0.08446215093135834,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050382827,
+        "elapsedMicros": 16505414,
+        "receivedAt": 1795038831857,
+        "sequence": 5115,
+        "calibrationVersion": 0
+      },
+      "press2": {
+        "channelId": "press2",
+        "raw": 7.094820499420166,
+        "value": 7.094820499420166,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050382827,
+        "elapsedMicros": 16505414,
+        "receivedAt": 1795038831857,
+        "sequence": 5116,
+        "calibrationVersion": 0
+      },
+      "press3": {
+        "channelId": "press3",
+        "raw": null,
+        "rawSpecial": "NaN",
+        "value": null,
+        "unit": "Pa",
+        "quality": "invalid",
+        "deviceMicros": 2050382827,
+        "elapsedMicros": 16505414,
+        "receivedAt": 1795038831857,
+        "sequence": 5117,
+        "calibrationVersion": 0
+      },
+      "press4": {
+        "channelId": "press4",
+        "raw": null,
+        "rawSpecial": "NaN",
+        "value": null,
+        "unit": "Pa",
+        "quality": "invalid",
+        "deviceMicros": 2050382827,
+        "elapsedMicros": 16505414,
+        "receivedAt": 1795038831857,
+        "sequence": 5118,
+        "calibrationVersion": 0
+      },
+      "abs_pressure": {
+        "channelId": "abs_pressure",
+        "raw": null,
+        "rawSpecial": "NaN",
+        "value": null,
+        "unit": "kPa",
+        "quality": "invalid",
+        "deviceMicros": 2050392944,
+        "elapsedMicros": 16515531,
+        "receivedAt": 1795038831868,
+        "sequence": 5119,
+        "calibrationVersion": 0
+      },
+      "array1": {
+        "channelId": "array1",
+        "raw": 18.412748336791992,
+        "value": 18.412748336791992,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5083,
+        "calibrationVersion": 0
+      },
+      "array2": {
+        "channelId": "array2",
+        "raw": 35.30517578125,
+        "value": 35.30517578125,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5084,
+        "calibrationVersion": 0
+      },
+      "array3": {
+        "channelId": "array3",
+        "raw": 16.47011947631836,
+        "value": 16.47011947631836,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5085,
+        "calibrationVersion": 0
+      },
+      "array4": {
+        "channelId": "array4",
+        "raw": 17.399202346801758,
+        "value": 17.399202346801758,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5086,
+        "calibrationVersion": 0
+      },
+      "array5": {
+        "channelId": "array5",
+        "raw": 6.081274509429932,
+        "value": 6.081274509429932,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5087,
+        "calibrationVersion": 0
+      },
+      "array6": {
+        "channelId": "array6",
+        "raw": 25.845417022705078,
+        "value": 25.845417022705078,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5088,
+        "calibrationVersion": 0
+      },
+      "array7": {
+        "channelId": "array7",
+        "raw": 32.01115417480469,
+        "value": 32.01115417480469,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5089,
+        "calibrationVersion": 0
+      },
+      "array8": {
+        "channelId": "array8",
+        "raw": 26.690038681030273,
+        "value": 26.690038681030273,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5090,
+        "calibrationVersion": 0
+      },
+      "array9": {
+        "channelId": "array9",
+        "raw": 29.899600982666016,
+        "value": 29.899600982666016,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5091,
+        "calibrationVersion": 0
+      },
+      "array10": {
+        "channelId": "array10",
+        "raw": 51.775299072265625,
+        "value": 51.775299072265625,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5092,
+        "calibrationVersion": 0
+      },
+      "array11": {
+        "channelId": "array11",
+        "raw": 27.36573600769043,
+        "value": 27.36573600769043,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5093,
+        "calibrationVersion": 0
+      },
+      "array12": {
+        "channelId": "array12",
+        "raw": 6.165737152099609,
+        "value": 6.165737152099609,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5094,
+        "calibrationVersion": 0
+      },
+      "array13": {
+        "channelId": "array13",
+        "raw": 9.966532707214355,
+        "value": 9.966532707214355,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5095,
+        "calibrationVersion": 0
+      },
+      "array14": {
+        "channelId": "array14",
+        "raw": 20.693225860595703,
+        "value": 20.693225860595703,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5096,
+        "calibrationVersion": 0
+      },
+      "array15": {
+        "channelId": "array15",
+        "raw": 27.36573600769043,
+        "value": 27.36573600769043,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5097,
+        "calibrationVersion": 0
+      },
+      "array16": {
+        "channelId": "array16",
+        "raw": 36.65657043457031,
+        "value": 36.65657043457031,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5098,
+        "calibrationVersion": 0
+      },
+      "array17": {
+        "channelId": "array17",
+        "raw": 23.48047637939453,
+        "value": 23.48047637939453,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5099,
+        "calibrationVersion": 0
+      },
+      "array18": {
+        "channelId": "array18",
+        "raw": 26.098804473876953,
+        "value": 26.098804473876953,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5100,
+        "calibrationVersion": 0
+      },
+      "array19": {
+        "channelId": "array19",
+        "raw": 19.764142990112305,
+        "value": 19.764142990112305,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5101,
+        "calibrationVersion": 0
+      },
+      "array20": {
+        "channelId": "array20",
+        "raw": 32.09561538696289,
+        "value": 32.09561538696289,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5102,
+        "calibrationVersion": 0
+      },
+      "array21": {
+        "channelId": "array21",
+        "raw": 34.798404693603516,
+        "value": 34.798404693603516,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5103,
+        "calibrationVersion": 0
+      },
+      "array22": {
+        "channelId": "array22",
+        "raw": 0,
+        "value": 0,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5104,
+        "calibrationVersion": 0
+      },
+      "array23": {
+        "channelId": "array23",
+        "raw": 55.49163055419922,
+        "value": 55.49163055419922,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5105,
+        "calibrationVersion": 0
+      },
+      "array24": {
+        "channelId": "array24",
+        "raw": 61.23506164550781,
+        "value": 61.23506164550781,
+        "unit": "Pa",
+        "quality": "good",
+        "deviceMicros": 2050380800,
+        "elapsedMicros": 16503387,
+        "receivedAt": 1795038831856,
+        "sequence": 5106,
+        "calibrationVersion": 0
+      }
+    },
+    "diagnostics": [
+      {
+        "id": 1,
+        "at": 1795038814281,
+        "level": "info",
+        "message": "DAQ ready. Connect a board to receive binary measurements; no data is generated while disconnected."
+      },
+      {
+        "id": 2,
+        "at": 1795038814804,
+        "level": "info",
+        "message": "Opened serial\r\n"
+      },
+      {
+        "id": 3,
+        "at": 1795038814989,
+        "level": "info",
+        "message": "Read command: 21\r\n"
+      },
+      {
+        "id": 4,
+        "at": 1795038814990,
+        "level": "info",
+        "message": "DAC output set to 0 mV\r\n"
+      },
+      {
+        "id": 5,
+        "at": 1795038815251,
+        "level": "info",
+        "message": "DAQ COM10 connected at 115200 baud, 8N1. DAC zero verified; binary sensor acquisition started."
+      },
+      {
+        "id": 6,
+        "at": 1795038815253,
+        "level": "info",
+        "message": "Read command: 1\r\n"
+      },
+      {
+        "id": 7,
+        "at": 1795038815253,
+        "level": "info",
+        "message": "At frequency: 100000\r\n"
+      },
+      {
+        "id": 8,
+        "at": 1795038815253,
+        "level": "info",
+        "message": "Also recieved sample amount: 0\r\n"
+      },
+      {
+        "id": 9,
+        "at": 1795038815253,
+        "level": "info",
+        "message": "Turned all sensors on\r\n"
+      }
+    ],
+    "frameCount": 694,
+    "recording": {
+      "active": true,
+      "path": "C:\\Users\\mario\\Downloads\\windtunnel\\Wind Tunnel Files\\wind-tunnel-app\\docs\\captures/2026-11-18T21-53-33.311Z-app-zero-check.jsonl",
+      "rows": 5119,
+      "error": null
+    },
+    "calibrations": {},
+    "roomTemperatureC": 22
+  }
+}

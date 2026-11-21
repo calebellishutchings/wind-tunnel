@@ -1,0 +1,30 @@
+ENS WIND TUNNEL - WINDOWS INSTALLATION
+
+1. Close any running ENS Wind Tunnel app normally.
+2. Double-click ENS-Wind-Tunnel-Setup-<version>.exe. Do not select Run as administrator.
+3. Setup installs for your Windows account and creates Desktop and Start menu shortcuts.
+4. Open ENS Wind Tunnel yourself when the equipment is ready.
+
+Opening the app automatically homes the connected Pitot mechanism. Setup does not launch it.
+
+The same installer includes native x64 and ARM64 applications. Windows 11 is the target.
+Windows 10 is not blocked, but is not officially supported. 32-bit Windows is not supported.
+
+No Node.js, Python, LabVIEW, .NET, WebView2, Visual Studio or package manager is required
+on this computer. Electron, Chromium, Node.js and the serial-port native module are bundled.
+Setup works offline. You only need to copy the one Setup EXE; no other project files are needed.
+
+USB DEVICE DRIVERS
+Windows normally supplies the DAQ USB serial driver. The Ender/CH340 controller may require
+a driver from Windows Update. Connect the equipment and check Device Manager / Windows Update
+if no COM port appears. Driver installation or a managed computer's restrictions may require IT
+or administrator approval. Setup does not bypass those restrictions or install kernel drivers.
+
+UPDATES / REMOVAL
+Close the app normally and run a newer Setup EXE to update. Uninstall through Windows Settings
+> Apps > Installed apps. Calibration settings in your Windows user profile and recordings saved
+outside the application folder are retained. Setup never force-closes the running control app.
+
+This build is unsigned. Windows may show an Unknown publisher / SmartScreen notice.
+Use the installer only from your team's trusted distribution location. Organization policies
+can block unsigned apps even though installation itself requires no administrator rights.

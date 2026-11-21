@@ -1,0 +1,101 @@
+{"at":"2026-11-19T16:55:43.505Z","kind":"device","device":{"path":"COM14","manufacturer":"wch.cn","serialNumber":"5&26DB06CC&0&4","pnpId":"USB\\VID_1A86&PID_7523\\5&26DB06CC&0&4","locationId":"Port_#0004.Hub_#0001","friendlyName":"USB-SERIAL CH340 (COM14)","vendorId":"1A86","productId":"7523"},"phase":"home-y","speedCapMmPerSec":1,"accelerationCapMmPerSec2":10}
+{"at":"2026-11-19T16:55:46.014Z","direction":"tx","text":"M115\n"}
+{"at":"2026-11-19T16:55:46.024Z","direction":"rx","text":"FIRMWARE_NAME:Marlin bugfix-2.1.","hex":"4649524d574152455f4e414d453a4d61726c696e206275676669782d322e312e"}
+{"at":"2026-11-19T16:55:46.031Z","direction":"rx","text":"x (Apr  8 2026 14:49:21) SOURCE_CODE_URL:github.com/MarlinFirmwa","hex":"78202841707220203820323032362031343a34393a32312920534f555243455f434f44455f55524c3a6769746875622e636f6d2f4d61726c696e4669726d7761"}
+{"at":"2026-11-19T16:55:46.034Z","direction":"rx","text":"re/Marlin PROTOCOL_VERSION:1.0 M","hex":"72652f4d61726c696e2050524f544f434f4c5f56455253494f4e3a312e30204d"}
+{"at":"2026-11-19T16:55:46.037Z","direction":"rx","text":"ACHINE_TYPE:Pitot Mechanism KINEMATICS:Cartesian EXTRUDER_COUNT:","hex":"414348494e455f545950453a5069746f74204d656368616e69736d204b494e454d41544943533a43617274657369616e2045585452554445525f434f554e543a"}
+{"at":"2026-11-19T16:55:46.041Z","direction":"rx","text":"1 UUID:cede2a2f-41a2-4748-9b12-c","hex":"3120555549443a63656465326132662d343161322d343734382d396231322d63"}
+{"at":"2026-11-19T16:55:46.045Z","direction":"rx","text":"55c62f367ff\nCap:SERIAL_XON_XOFF:","hex":"35356336326633363766660a4361703a53455249414c5f584f4e5f584f46463a"}
+{"at":"2026-11-19T16:55:46.048Z","direction":"rx","text":"0\nCap:BINARY_FILE_TRANSFER:0\nCap","hex":"300a4361703a42494e4152595f46494c455f5452414e534645523a300a436170"}
+{"at":"2026-11-19T16:55:46.051Z","direction":"rx","text":":EEPROM:1\nCap:VOLUMETRIC:1\nCap:A","hex":"3a454550524f4d3a310a4361703a564f4c554d45545249433a310a4361703a41"}
+{"at":"2026-11-19T16:55:46.055Z","direction":"rx","text":"UTOREPORT_POS:0\nCap:AUTOREPORT_T","hex":"55544f5245504f52545f504f533a300a4361703a4155544f5245504f52545f54"}
+{"at":"2026-11-19T16:55:46.059Z","direction":"rx","text":"EMP:1\nCap:PROGRESS:0\nCap:PRINT_J","hex":"454d503a310a4361703a50524f47524553533a300a4361703a5052494e545f4a"}
+{"at":"2026-11-19T16:55:46.062Z","direction":"rx","text":"OB:1\nCap:AUTOLEVEL:0\nCap:RUNOUT:0\nCap:Z_PROBE:0\nCap:LEVELING_DAT","hex":"4f423a310a4361703a4155544f4c4556454c3a300a4361703a52554e4f55543a300a4361703a5a5f50524f42453a300a4361703a4c4556454c494e475f444154"}
+{"at":"2026-11-19T16:55:46.065Z","direction":"rx","text":"A:1\nCap:BUILD_PERCENT:0\nCap:SOFT","hex":"413a310a4361703a4255494c445f50455243454e543a300a4361703a534f4654"}
+{"at":"2026-11-19T16:55:46.068Z","direction":"rx","text":"WARE_POWER:0\nCap:TOGGLE_LIGHTS:0","hex":"574152455f504f5745523a300a4361703a544f47474c455f4c49474854533a30"}
+{"at":"2026-11-19T16:55:46.071Z","direction":"rx","text":"\nCap:CASE_LIGHT_BRIGHTNESS:0\nCap","hex":"0a4361703a434153455f4c494748545f4252494748544e4553533a300a436170"}
+{"at":"2026-11-19T16:55:46.074Z","direction":"rx","text":":EMERGENCY_PARSER:1\nCap:HOST_ACT","hex":"3a454d455247454e43595f5041525345523a310a4361703a484f53545f414354"}
+{"at":"2026-11-19T16:55:46.077Z","direction":"rx","text":"ION_COMMANDS:1\nCap:PROMPT_SUPPOR","hex":"494f4e5f434f4d4d414e44533a310a4361703a50524f4d50545f535550504f52"}
+{"at":"2026-11-19T16:55:46.080Z","direction":"rx","text":"T:1\nCap:SDCARD:1\nCap:MULTI_VOLUM","hex":"543a310a4361703a5344434152443a310a4361703a4d554c54495f564f4c554d"}
+{"at":"2026-11-19T16:55:46.083Z","direction":"rx","text":"E:0\nCap:REPEAT:0\nCap:SD_WRITE:1\n","hex":"453a300a4361703a5245504541543a300a4361703a53445f57524954453a310a"}
+{"at":"2026-11-19T16:55:46.087Z","direction":"rx","text":"Cap:AUTOREPORT_SD_STATUS:0\nCap:L","hex":"4361703a4155544f5245504f52545f53445f5354415455533a300a4361703a4c"}
+{"at":"2026-11-19T16:55:46.090Z","direction":"rx","text":"ONG_FILENAME:0\nCap:LFN_WRITE:0\nC","hex":"4f4e475f46494c454e414d453a300a4361703a4c464e5f57524954453a300a43"}
+{"at":"2026-11-19T16:55:46.093Z","direction":"rx","text":"ap:CUSTOM_FIRMWARE_UPLOAD:0\nCap:","hex":"61703a435553544f4d5f4649524d574152455f55504c4f41443a300a4361703a"}
+{"at":"2026-11-19T16:55:46.095Z","direction":"rx","text":"EXTENDED_M20:0\nCap:THERMAL_PROTE","hex":"455854454e4445445f4d32303a300a4361703a544845524d414c5f50524f5445"}
+{"at":"2026-11-19T16:55:46.098Z","direction":"rx","text":"CTION:1\nCap:MOTION_MODES:0\nCap:A","hex":"4354494f4e3a310a4361703a4d4f54494f4e5f4d4f4445533a300a4361703a41"}
+{"at":"2026-11-19T16:55:46.102Z","direction":"rx","text":"RCS:1\nCap:BABYSTEPPING:1\nCap:EP_","hex":"5243533a310a4361703a424142595354455050494e473a310a4361703a45505f"}
+{"at":"2026-11-19T16:55:46.105Z","direction":"rx","text":"BABYSTEP:0\nCap:CHAMBER_TEMPERATU","hex":"42414259535445503a300a4361703a4348414d4245525f54454d504552415455"}
+{"at":"2026-11-19T16:55:46.108Z","direction":"rx","text":"RE:0\nCap:COOLER_TEMPERATURE:0\nCa","hex":"52453a300a4361703a434f4f4c45525f54454d50455241545552453a300a4361"}
+{"at":"2026-11-19T16:55:46.111Z","direction":"rx","text":"p:MEATPACK:0\nCap:CONFIG_EXPORT:0","hex":"703a4d4541545041434b3a300a4361703a434f4e4649475f4558504f52543a30"}
+{"at":"2026-11-19T16:55:46.114Z","direction":"rx","text":"\nok\n","hex":"0a6f6b0a"}
+{"at":"2026-11-19T16:55:46.116Z","direction":"tx","text":"M119\n"}
+{"at":"2026-11-19T16:55:46.122Z","direction":"rx","text":"Reporting endstop status\nx_min: ","hex":"5265706f7274696e6720656e6473746f70207374617475730a785f6d696e3a20"}
+{"at":"2026-11-19T16:55:46.125Z","direction":"rx","text":"TRIGGERED\ny_min: TRIGGERED\nz_min","hex":"5452494747455245440a795f6d696e3a205452494747455245440a7a5f6d696e"}
+{"at":"2026-11-19T16:55:46.128Z","direction":"rx","text":": TRIGGERED\nok\n","hex":"3a205452494747455245440a6f6b0a"}
+{"at":"2026-11-19T16:55:46.130Z","direction":"tx","text":"G21\n"}
+{"at":"2026-11-19T16:55:46.134Z","direction":"rx","text":"ok\n","hex":"6f6b0a"}
+{"at":"2026-11-19T16:55:46.136Z","direction":"tx","text":"G90\n"}
+{"at":"2026-11-19T16:55:46.141Z","direction":"rx","text":"ok\n","hex":"6f6b0a"}
+{"at":"2026-11-19T16:55:46.141Z","direction":"tx","text":"M203 X1 Y1\n"}
+{"at":"2026-11-19T16:55:46.146Z","direction":"rx","text":"ok\n","hex":"6f6b0a"}
+{"at":"2026-11-19T16:55:46.148Z","direction":"tx","text":"M201 X10 Y10\n"}
+{"at":"2026-11-19T16:55:46.153Z","direction":"rx","text":"ok\n","hex":"6f6b0a"}
+{"at":"2026-11-19T16:55:46.154Z","direction":"tx","text":"M204 P10 T10\n"}
+{"at":"2026-11-19T16:55:46.158Z","direction":"rx","text":"ok\n","hex":"6f6b0a"}
+{"at":"2026-11-19T16:55:46.160Z","direction":"tx","text":"M211 S1\n"}
+{"at":"2026-11-19T16:55:46.164Z","direction":"rx","text":"ok\n","hex":"6f6b0a"}
+{"at":"2026-11-19T16:55:46.165Z","direction":"tx","text":"M503\n"}
+{"at":"2026-11-19T16:55:46.171Z","direction":"rx","text":"echo:; Linear Units:\necho:  G21 ","hex":"6563686f3a3b204c696e65617220556e6974733a0a6563686f3a202047323120"}
+{"at":"2026-11-19T16:55:46.174Z","direction":"rx","text":"; (mm)\necho:; Auto Temp Control:","hex":"3b20286d6d290a6563686f3a3b204175746f2054656d7020436f6e74726f6c3a"}
+{"at":"2026-11-19T16:55:46.177Z","direction":"rx","text":"\necho:  M104 S210 B250 F0.10\nech","hex":"0a6563686f3a20204d313034205332313020423235302046302e31300a656368"}
+{"at":"2026-11-19T16:55:46.179Z","direction":"rx","text":"o:; Temperature Units:\necho:  M1","hex":"6f3a3b2054656d706572617475726520556e6974733a0a6563686f3a20204d31"}
+{"at":"2026-11-19T16:55:46.183Z","direction":"rx","text":"49 C ; Units in Celsius\necho:; F","hex":"34392043203b20556e69747320696e2043656c736975730a6563686f3a3b2046"}
+{"at":"2026-11-19T16:55:46.186Z","direction":"rx","text":"ilament settings (Disabled):\nech","hex":"696c616d656e742073657474696e6773202844697361626c6564293a0a656368"}
+{"at":"2026-11-19T16:55:46.189Z","direction":"rx","text":"o:  M200 S0 D1.75\necho:; Steps p","hex":"6f3a20204d3230302053302044312e37350a6563686f3a3b2053746570732070"}
+{"at":"2026-11-19T16:55:46.192Z","direction":"rx","text":"er unit:\necho:  M92 X80.00 Y80.0","hex":"657220756e69743a0a6563686f3a20204d3932205838302e3030205938302e30"}
+{"at":"2026-11-19T16:55:46.195Z","direction":"rx","text":"0 Z400.00 E93.00\necho:; Max feed","hex":"30205a3430302e3030204539332e30300a6563686f3a3b204d61782066656564"}
+{"at":"2026-11-19T16:55:46.198Z","direction":"rx","text":"rates (units/s):\necho:  M203 X1.","hex":"72617465732028756e6974732f73293a0a6563686f3a20204d3230332058312e"}
+{"at":"2026-11-19T16:55:46.201Z","direction":"rx","text":"00 Y1.00 Z500.00 E500.00\necho:; ","hex":"30302059312e3030205a3530302e303020453530302e30300a6563686f3a3b20"}
+{"at":"2026-11-19T16:55:46.204Z","direction":"rx","text":"Max Acceleration (units/s2):\nech","hex":"4d617820416363656c65726174696f6e2028756e6974732f7332293a0a656368"}
+{"at":"2026-11-19T16:55:46.207Z","direction":"rx","text":"o:  M201 X10.00 Y10.00 Z100.00 E","hex":"6f3a20204d323031205831302e3030205931302e3030205a3130302e30302045"}
+{"at":"2026-11-19T16:55:46.210Z","direction":"rx","text":"1000.00\necho:; Acceleration (uni","hex":"313030302e30300a6563686f3a3b20416363656c65726174696f6e2028756e69"}
+{"at":"2026-11-19T16:55:46.213Z","direction":"rx","text":"ts/s2) (P<print-accel> R<retract","hex":"74732f7332292028503c7072696e742d616363656c3e20523c72657472616374"}
+{"at":"2026-11-19T16:55:46.216Z","direction":"rx","text":"-accel> T<travel-accel>):\necho: ","hex":"2d616363656c3e20543c74726176656c2d616363656c3e293a0a6563686f3a20"}
+{"at":"2026-11-19T16:55:46.220Z","direction":"rx","text":" M204 P10.00 R500.00 T10.00\necho","hex":"204d323034205031302e303020523530302e3030205431302e30300a6563686f"}
+{"at":"2026-11-19T16:55:46.223Z","direction":"rx","text":":; Advanced (B<min_segment_time_","hex":"3a3b20416476616e6365642028423c6d696e5f7365676d656e745f74696d655f"}
+{"at":"2026-11-19T16:55:46.226Z","direction":"rx","text":"us> S<min_feedrate> T<min_travel","hex":"75733e20533c6d696e5f66656564726174653e20543c6d696e5f74726176656c"}
+{"at":"2026-11-19T16:55:46.229Z","direction":"rx","text":"_feedrate> X<max_jerk> Y<max_jer","hex":"5f66656564726174653e20583c6d61785f6a65726b3e20593c6d61785f6a6572"}
+{"at":"2026-11-19T16:55:46.232Z","direction":"rx","text":"k> Z<max_jerk> E<max_jerk>):\nech","hex":"6b3e205a3c6d61785f6a65726b3e20453c6d61785f6a65726b3e293a0a656368"}
+{"at":"2026-11-19T16:55:46.234Z","direction":"rx","text":"o:  M205 B20000.00 S0.00 T0.00 X","hex":"6f3a20204d323035204232303030302e30302053302e30302054302e30302058"}
+{"at":"2026-11-19T16:55:46.238Z","direction":"rx","text":"10.00 Y10.00 Z0.30 E5.00\necho:; ","hex":"31302e3030205931302e3030205a302e33302045352e30300a6563686f3a3b20"}
+{"at":"2026-11-19T16:55:46.241Z","direction":"rx","text":"Home offset:\necho:  M206 X0.00 Y","hex":"486f6d65206f66667365743a0a6563686f3a20204d3230362058302e30302059"}
+{"at":"2026-11-19T16:55:46.244Z","direction":"rx","text":"0.00 Z0.00\necho:; Auto Bed Level","hex":"302e3030205a302e30300a6563686f3a3b204175746f20426564204c6576656c"}
+{"at":"2026-11-19T16:55:46.247Z","direction":"rx","text":"ing:\necho:  M420 S0 Z10.00 ; Lev","hex":"696e673a0a6563686f3a20204d343230205330205a31302e3030203b204c6576"}
+{"at":"2026-11-19T16:55:46.250Z","direction":"rx","text":"eling OFF\necho:; Material heatup","hex":"656c696e67204f46460a6563686f3a3b204d6174657269616c20686561747570"}
+{"at":"2026-11-19T16:55:46.253Z","direction":"rx","text":" parameters:\necho:  M145 S0 H185","hex":"20706172616d65746572733a0a6563686f3a20204d3134352053302048313835"}
+{"at":"2026-11-19T16:55:46.256Z","direction":"rx","text":".00 B45.00 F255\necho:  M145 S1 H","hex":"2e3030204234352e303020463235350a6563686f3a20204d3134352053312048"}
+{"at":"2026-11-19T16:55:46.259Z","direction":"rx","text":"240.00 B70.00 F255\necho:; Hotend","hex":"3234302e3030204237302e303020463235350a6563686f3a3b20486f74656e64"}
+{"at":"2026-11-19T16:55:46.262Z","direction":"rx","text":" PID:\necho:  M301 P28.72 I2.62 D","hex":"205049443a0a6563686f3a20204d333031205032382e37322049322e36322044"}
+{"at":"2026-11-19T16:55:46.265Z","direction":"rx","text":"78.81\necho:; Bed PID:\necho:  M30","hex":"37382e38310a6563686f3a3b20426564205049443a0a6563686f3a20204d3330"}
+{"at":"2026-11-19T16:55:46.268Z","direction":"rx","text":"4 P462.10 I85.47 D624.59\necho:; ","hex":"3420503436322e3130204938352e343720443632342e35390a6563686f3a3b20"}
+{"at":"2026-11-19T16:55:46.271Z","direction":"rx","text":"LCD Brightness:\necho:  M256 B250","hex":"4c4344204272696768746e6573733a0a6563686f3a20204d3235362042323530"}
+{"at":"2026-11-19T16:55:46.275Z","direction":"rx","text":"\necho:; Power-loss recovery:\nech","hex":"0a6563686f3a3b20506f7765722d6c6f7373207265636f766572793a0a656368"}
+{"at":"2026-11-19T16:55:46.278Z","direction":"rx","text":"o:  M413 S0 ; OFF\nok\n","hex":"6f3a20204d343133205330203b204f46460a6f6b0a"}
+{"at":"2026-11-19T16:55:46.279Z","direction":"tx","text":"G28 Y\n"}
+{"at":"2026-11-19T16:55:48.284Z","direction":"rx","text":"echo:busy: processing\n","hex":"6563686f3a627573793a2070726f63657373696e670a"}
+{"at":"2026-11-19T16:55:50.284Z","direction":"rx","text":"echo:busy: processing\n","hex":"6563686f3a627573793a2070726f63657373696e670a"}
+{"at":"2026-11-19T16:55:52.284Z","direction":"rx","text":"echo:busy: processing\n","hex":"6563686f3a627573793a2070726f63657373696e670a"}
+{"at":"2026-11-19T16:55:54.284Z","direction":"rx","text":"echo:busy: processing\n","hex":"6563686f3a627573793a2070726f63657373696e670a"}
+{"at":"2026-11-19T16:55:55.343Z","direction":"rx","text":"X:0.00 Y:0.00 Z:0.00 E:0.00 Coun","hex":"583a302e303020593a302e3030205a3a302e303020453a302e303020436f756e"}
+{"at":"2026-11-19T16:55:55.346Z","direction":"rx","text":"t X:0 Y:0 Z:0\nok\n","hex":"7420583a3020593a30205a3a300a6f6b0a"}
+{"at":"2026-11-19T16:55:55.348Z","direction":"tx","text":"M400\n"}
+{"at":"2026-11-19T16:55:55.353Z","direction":"rx","text":"ok\n","hex":"6f6b0a"}
+{"at":"2026-11-19T16:55:55.354Z","direction":"tx","text":"M114\n"}
+{"at":"2026-11-19T16:55:55.361Z","direction":"rx","text":"X:0.00 Y:0.00 Z:0.00 E:0.00 Coun","hex":"583a302e303020593a302e3030205a3a302e303020453a302e303020436f756e"}
+{"at":"2026-11-19T16:55:55.364Z","direction":"rx","text":"t X:0 Y:0 Z:0\nok\n","hex":"7420583a3020593a30205a3a300a6f6b0a"}
+{"at":"2026-11-19T16:55:55.365Z","direction":"tx","text":"M119\n"}
+{"at":"2026-11-19T16:55:55.372Z","direction":"rx","text":"Reporting endstop status\nx_min: ","hex":"5265706f7274696e6720656e6473746f70207374617475730a785f6d696e3a20"}
+{"at":"2026-11-19T16:55:55.375Z","direction":"rx","text":"open\ny_min: open\nz_min: TRIGGERE","hex":"6f70656e0a795f6d696e3a206f70656e0a7a5f6d696e3a205452494747455245"}
+{"at":"2026-11-19T16:55:55.377Z","direction":"rx","text":"D\nok\n","hex":"440a6f6b0a"}
+{"at":"2026-11-19T16:55:55.378Z","kind":"phase-complete","phase":"home-y","note":"No further motion requested. Motors are not deliberately disabled."}
+{"at":"2026-11-19T16:55:55.381Z","kind":"closed","filename":"C:\\Users\\mario\\Downloads\\windtunnel\\Wind Tunnel Files\\wind-tunnel-app\\docs\\captures\\2026-11-19T16-55-43.503Z-pitot-home-y.jsonl"}
