@@ -65,7 +65,9 @@ test('all channels, original UI workflows, durable recording, CSV and acknowledg
     false,
   )
   await page.getByRole('button', { name: 'Save run log (JSONL)', exact: true }).click()
+  await expect(page.getByRole('status')).toContainText('Run log saved.')
   await page.getByRole('button', { name: 'Export CSV', exact: true }).click()
+  await expect(page.getByRole('status')).toContainText('CSV saved to ')
   const files = await page.evaluate(() => window.fixture.files)
   const jsonl = Object.entries(files).find(([name]) => name.endsWith('.jsonl'))![1]
   const csv = Object.entries(files).find(([name]) => name.endsWith('.csv'))![1]
