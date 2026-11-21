@@ -1,12 +1,36 @@
 import { Check } from 'lucide-react'
-import type { Snapshot } from '../../../shared/model'
+import { useEffect, useState } from 'react'
+import type { Result, Snapshot } from '../../../shared/model'
+import type { SessionSummary } from '../../../shared/storage'
 import { Panel } from '../components/ui'
 
-export function Sessions({ snapshot: s }: { snapshot: Snapshot }) {
+export function Sessions({
+  snapshot: s,
+  run,
+}: {
+  snapshot: Snapshot
+  run: <T>(operation: () => Promise<Result<T>>, success?: string) => Promise<T | undefined>
+}) {
+  const [sessions, setSessions] = useState<SessionSummary[]>([])
+  const [storageError, setStorageError] = useState('')
+  useEffect(() => {
+    let active = true
+    void window.tunnel.listRecordings().then((result) => {
+      if (!active) return
+      if (result.ok) setSessions(result.value)
+      else setStorageError(result.error)
+    })
+    return () => {
+      active = false
+    }
+  }, [s.recording.active, s.recording.path, s.disconnecting])
   return (
     <>
       <div className="two-columns">
-        <Panel title="Append-only run log" subtitle="Streaming JSONL · schema version 1">
+        <Panel
+          title="Append-only run log"
+          subtitle="Persistent browser storage · JSONL schema version 1"
+        >
           <div className="session-status">
             <span className={s.recording.active ? 'record-dot' : 'muted-dot'} />
             {s.recording.active ? `Recording ${s.mode} measurements` : 'Ready to record'}
@@ -15,7 +39,7 @@ export function Sessions({ snapshot: s }: { snapshot: Snapshot }) {
             {s.recording.rows.toLocaleString()} <span>channel samples</span>
           </div>
           <p className="file-path">
-            {s.recording.path ?? 'Choose a destination with Record session.'}
+            {s.recording.path ?? 'Use Record session to create a new local run.'}
           </p>
           <p className="help-text">
             Records transport bytes, original values, calibrated values, device microseconds, host
@@ -26,6 +50,16 @@ export function Sessions({ snapshot: s }: { snapshot: Snapshot }) {
             Stop recording before CSV export. New recordings use new files so earlier runs cannot be
             overwritten.
           </p>
+          <div className="button-pair">
+            <button
+              disabled={s.recording.active || !s.recording.path || s.disconnecting}
+              onClick={() =>
+                void run(() => window.tunnel.saveRecording(null, 'jsonl'), 'Run log saved.')
+              }
+            >
+              Save run log (JSONL)
+            </button>
+          </div>
         </Panel>
         <Panel title="Data conventions" subtitle="Designed for reproducible analysis">
           <ul className="convention-list">
@@ -56,6 +90,59 @@ export function Sessions({ snapshot: s }: { snapshot: Snapshot }) {
           </p>
         </Panel>
       </div>
+      <Panel
+        title="Saved recordings"
+        subtitle="Stored on this computer in this browser profile; export files to keep or share them."
+      >
+        {storageError && <p role="alert">{storageError}</p>}
+        {!sessions.length && <p className="panel-note">No saved runs yet.</p>}
+        {sessions.map((session) => {
+          const active = s.recording.active && session.name === s.recording.path
+          return (
+            <div className="saved-run" key={session.id}>
+              <div>
+                <strong>{session.name}</strong>
+                <p>
+                  {active ? s.recording.rows.toLocaleString() : session.rows.toLocaleString()}{' '}
+                  samples ·{' '}
+                  {active
+                    ? 'recording'
+                    : session.status === 'recording'
+                      ? 'unfinalized — recover committed data'
+                      : session.status}
+                  {session.error && ` · ${session.error}`}
+                </p>
+              </div>
+              <div className="button-pair">
+                <button
+                  disabled={active || s.disconnecting}
+                  onClick={() =>
+                    void run(
+                      () => window.tunnel.saveRecording(session.id, 'jsonl'),
+                      'Run log saved.',
+                    )
+                  }
+                >
+                  Save JSONL
+                </button>
+                <button
+                  disabled={active || s.disconnecting}
+                  onClick={() =>
+                    void run(() => window.tunnel.saveRecording(session.id, 'csv'), 'CSV saved.')
+                  }
+                >
+                  Save CSV
+                </button>
+              </div>
+            </div>
+          )
+        })}
+        <p className="help-text">
+          Closing a tab cannot finish USB shutdown. Use Disconnect first. Clearing this site's
+          browser data removes local runs and calibration. Previously committed data from an
+          interrupted run can be recovered above.
+        </p>
+      </Panel>
       <Diagnostics snapshot={s} />
     </>
   )

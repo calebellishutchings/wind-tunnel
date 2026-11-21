@@ -22,7 +22,11 @@ export function SpeedDial({
   const connected = snapshot.daq.state === 'connected'
   const fan = snapshot.fan
   const controlsDisabled =
-    pending || !connected || snapshot.emergencyStopped || fan.status !== 'confirmed'
+    pending ||
+    snapshot.disconnecting ||
+    !connected ||
+    snapshot.emergencyStopped ||
+    fan.status !== 'confirmed'
   const angle = -130 + (value / max) * 260
   const select = (event: React.PointerEvent<SVGSVGElement>) => {
     if (controlsDisabled) return
@@ -164,7 +168,7 @@ export function PitotControls({
 }) {
   const pitot = snapshot.pitot
   const busy = pending || ['connecting', 'homing', 'moving'].includes(pitot.status)
-  const disabled = busy || snapshot.emergencyStopped
+  const disabled = busy || snapshot.disconnecting || snapshot.emergencyStopped
   const limit = (axis: 'x' | 'y', n: number) =>
     Math.max(0, Math.min(PITOT_LIMITS_MM[axis], Number.isFinite(n) ? n : 0))
   return (

@@ -1,4 +1,12 @@
-# Implementation status — v0.6.2
+# Implementation status — browser v0.7.0
+
+The working React interface and control state machines now run in desktop Edge/Chrome, with separate Web Serial connections for the DAQ and Pitot. Explicit Disconnect supersedes pending nonzero commands, requests acknowledged DAC zero, finalizes persistent browser recordings, and releases the devices. An unacknowledged zero retains the healthy DAQ for retry. Recording-finalization errors remain visible and can also be retried.
+
+Recordings commit append-only chunks to IndexedDB, survive reloads, and can be exported as JSONL/CSV from Sessions. Calibration persists in browser storage, with validated import/export of the Electron JSON format. The production bundle contains no Electron runtime, Node serial module, replay mode or hardware commissioning scripts. Offline UI caching and exclusive control across tabs are supported. GitHub Actions validates/builds/tests the site and deploys only `dist/` from `main` once Pages is configured and the source is pushed.
+
+See [the current README](../README.md) for operation, deployment and verification commands. Physical validation of Web Serial with the actual tunnel remains necessary; the browser tests use injected native-API fixtures and saved bytes. The unchanged Electron source is preserved on `electron-app` at `f6b4492`.
+
+## Historical Electron v0.6.2 status
 
 A separate release-only distribution workflow builds one per-user Windows NSIS installer with native x64/ARM64 payloads and bundled Electron runtimes. It does not require application frameworks on the destination computer, request elevation, auto-launch the app, or force-close a running control session. The working development package remains untouched. See [distribution](DISTRIBUTION.md) for rebuild/install instructions and deployment-validation limits.
 

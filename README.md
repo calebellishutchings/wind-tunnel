@@ -1,96 +1,98 @@
-# ENS Wind Tunnel desktop app — v0.6.2
+# ENS Wind Tunnel web app — v0.7.0
 
-Electron acquisition software for the RP2350 DAQ, configured for binary firmware output, with a separate Marlin Pitot controller. DAQ acquisition starts disconnected. **On application startup, the connected, identified Pitot controller automatically homes X and Y. Keep the mechanism clear before launching.** No simulated measurements or motion are generated.
+Browser acquisition and control for the ENS wind tunnel, using desktop **Edge or Chrome** on the computer connected to the DAQ and Pitot USB cables. The existing React interface and control state machines run locally in the browser. No Electron, Python, LabVIEW, local server, or application installation is needed to use a deployed build.
 
-## Run the built application
+**Use Disconnect before closing or reloading.** It requests acknowledged fan zero, stops acquisition, finalizes the recording, and releases both USB connections. Closing a tab cannot reliably finish asynchronous hardware cleanup. Physical VFD Stop and Pitot power cutoff remain available to the operator.
 
-For another Windows computer, use the single **`distribution/ENS-Wind-Tunnel-Setup-0.6.2.exe`** installer. It installs for the current user without administrator rights and includes all application runtimes; it also works offline. Windows 11 is the target, Windows 10 is allowed but unsupported. Native x64 and ARM64 payloads are included. Hardware drivers or organization restrictions may still need IT approval. Setup creates shortcuts but does not launch the app or close a running copy. See [installation and distribution](docs/DISTRIBUTION.md).
+**Connecting the identified Pitot automatically homes X and Y.** Opening the website also attempts this when it already has permission for a single matching controller. Keep the mechanism clear. DAQ acquisition always requires an explicit connection.
 
-Double-click **Start Wind Tunnel.cmd** in the parent folder. It launches `release/win-unpacked/ENS Wind Tunnel.exe` with its bundled runtime; Node.js is not required to run the packaged application.
+The original desktop application is preserved on the `electron-app` branch at `f6b4492`; `main` is the browser application. Existing dated capture/commissioning/distribution documents describe the Electron releases and remain historical evidence.
 
-1. The app opens on **Main**, with no generated measurements. Open **Hardware** and scan ports if needed. A single matching DAQ is suggested by USB identity **2E8A:F00F**, not a saved COM number.
-2. Confirm the DAQ port and baud (115200 for the measured official board), then click **Connect and read DAQ**. Binary output is fixed; there is no ASCII/Auto or simulation selector.
-3. **Main** shows separate central-ring and Pitot airspeed estimates and their history. **Pressure graphs** offers individual or all 29 pressure channels; **Pressure array** selects all 24 array sensors; **Data Viewer** includes all 37 channel slots. Choose overlaid plots grouped by unit or separate sensor plots. Literal zeros and NaNs are preserved. Raw plots use original board values, including raw bridge counts.
-4. **Stop acquisition** and **Start acquisition** control sensor sampling. **Record session** creates a new JSONL log; stop recording before exporting CSV.
-5. **Disconnect DAQ** stops acquisition and releases the port. USB loss marks existing values stale and stops recording. Reconnecting clears the measurement session and display history.
+## Connect and operate
 
-Acquisition, recording, calibration and manual fan output require a connected DAQ. Its transport rejects other USB identities before opening a port. The Pitot uses an independent serial owner and does not require the DAQ to be connected. No firmware changes, uploads or EEPROM writes are performed.
+1. Open the deployed site over HTTPS, or a local development build over localhost. Use the USB-connected computer; the website does not remotely control another computer's ports.
+2. In **Hardware**, click **Choose DAQ device** and select the RP2350 DAQ in the browser's USB chooser. It filters USB **2E8A:F00F**. **Scan ports** lists devices already authorized for this site. `USB-1`, etc. are browser-session labels, not Windows COM numbers.
+3. Select 115200 baud for the measured official board and click **Connect and read DAQ**. Binary measurements begin after an initial DAC-zero attempt. Missing DAC acknowledgment disables fan output while a healthy acquisition connection remains available.
+4. In **Pitot**, click **Connect and home Pitot** to grant separate access to the CH340 controller (**1A86:7523**). Machine name, UUID, emergency parser, settings and endstops are verified before X/Y homing. DAQ and Pitot operate independently.
+5. Use **Main**, **Pitot**, **Force Balance**, **Pressure graphs**, **Data Viewer**, **Pressure array**, **Calibration**, **Sessions**, and **Hardware** as in the desktop interface. Fan edits and Pitot arrows edit targets locally; **Apply** and **Move Pitot** send them.
+6. Use **Record session** to record every received chunk and decoded scalar sample in persistent browser storage. **Stop recording** finalizes the run. **Sessions** lists saved runs and exports JSONL or CSV. The header's **Export CSV** exports the current/latest run.
+7. Click the header's **Disconnect** before closing, reloading, unplugging, or switching control tabs. Wait for success. If fan zero is not acknowledged, the DAQ stays connected for a retry, the recording is finalized, and an error is shown. Use physical VFD Stop if zero cannot be verified. Recording-finalization failures are reported and can also be retried with Disconnect.
 
-## Operator interface
+One browser tab owns USB control at a time. A second tab can view its own workspace and saved runs but cannot take over an active control session. After disconnect, another tab can connect. Browser/site USB policies and the operating system's device drivers still apply. A first USB permission grant requires an operator click; the app never bypasses the browser chooser.
 
-The **Fan output** dial is a manual percentage reference: **0% = 0 V, 5% = 0.150 V, 50% = 1.500 V, 100% = 3.000 V** at the DAC, before amplification. Dragging the dial or editing the number only changes the requested value; click **Apply** to send it. The app shows the board-confirmed DAC output separately and requires the exact firmware acknowledgment. This is not measured fan speed or calibrated mph. The nominal amplifier gain is three, so 100% corresponds to approximately 9 V at the VFD reference. Only the brief 0–150 mV commissioning test has been physically exercised; the user observed the fan turn on. The wider range is software-tested, not physically commissioned.
+The built application caches its UI for offline use after a successful online visit. Updates wait for existing tabs to close; they do not force a reload during a control session. Offline access still requires the same browser profile and previously cached assets.
 
-**DAQ connection is independent of VFD run readiness.** Startup attempts DAC zero, but a missing DAC acknowledgment leaves fan output unavailable while sensor acquisition and recording remain connected. Actual USB/serial failure still reports a connection error.
+## Recordings and calibration
 
-The dial and Apply are available directly when the DAQ is connected, DAC zero is verified and Emergency Stop is clear. There is no Rev Run confirmation box, popup or manual readiness gate. The DAQ protocol supplies no VFD run-state feedback; use the VFD's physical Run/Stop controls normally. DAC acknowledgments and measured airflow do not establish run state.
+Runs and calibrations belong to this website's origin, path, and browser profile. They are stored on the operating computer, not uploaded to GitHub. Normal reloads retain committed recordings and calibration. Clearing site data or using another browser/profile changes that local storage; export files to keep or share them.
 
-**Stop fan (0%)** requests acknowledged zero and can retry zero after a DAC acknowledgment failure; stopping acquisition alone does not change fan output. Disconnect and normal application exit request acknowledged zero before releasing the port. Nonzero requests are never restored on reconnect. A missing nonzero acknowledgment latches the stop state and attempts zero while leaving a healthy DAQ connection intact. USB loss or a process crash cannot guarantee zero or physical stopping; keep the VFD's physical Run/Stop controls available.
+Recordings use append-only IndexedDB chunks with atomic progress updates, bounded queues, and visible storage/quota failures. Disconnect waits for accepted records to commit. An interrupted tab may lose its most recent uncommitted batch; **Sessions** labels unfinalized runs and can recover their committed chunks. User-selected output files are streamed and finalized before success is reported. Existing nonempty export files are refused; choose a new filename.
 
-The **Pitot** page and compact Main controls show connection, homing and completed controller position. Startup finds a single CH340 candidate (USB 1A86:7523, currently COM14), then verifies Marlin's machine name, UUID and emergency-parser support before any homing. Every new connection restores the original captured runtime motion limits and completes `G28 X`, `G28 Y`, `M400` and a zero `M114` check before movement becomes available. **Home Pitot** repeats that sequence. `G28` without explicit axes is never sent, avoiding the unused Z axis.
+JSONL retains schema version 1, hardware-source metadata, raw RX/TX bytes, raw/calibrated measurements, device and arrival timestamps, nonfinite-value tags, calibration versions, temperature changes and diagnostics. CSV retains the desktop's twelve columns:
 
-Targets and arrow buttons edit locally; **Move Pitot** sends the selected target and waits for `M400` and matching `M114`. Both axes accept **0–360 mm**, with no axis swap. The controller reported native X360/Y400, while LabVIEW's displayed axes were reported as X400/Y360; the operator chose 360 mm for both until the larger rail is identified. Firmware software endstops remain enabled and unchanged. X is horizontal and Y vertical, as observed during November 19 homing. Marlin reports an open-loop coordinate, not an encoder-measured location.
+```text
+mode,channelId,raw,rawSpecial,value,unit,quality,deviceMicros,elapsedMicros,receivedAt,sequence,calibrationVersion
+```
 
-**Homing persists for the connection.** Idle time, snapshots and navigation between Main/Pitot do not invalidate it or send a Home command. The app sets the runtime stepper inactivity timeout to zero (`M84 S0`) so idle motors retain holding torque after homing. There is no periodic rehoming requirement. Disconnect/reconnect, controller reset/error, stop, failed motion or loss of position validity require homing again. Home Pitot remains available on demand. Holding remains configured in RAM until the controller is restarted; the app does not release the vertical carriage on disconnect.
+Use **Calibration → Import calibration JSON** while the DAQ is disconnected to migrate the desktop app's `hardware-calibrations.json`. Its usual Windows location is `%APPDATA%\ens-wind-tunnel\hardware-calibrations.json`. The browser cannot automatically read that directory. Export calibration JSON to back it up or transfer it. Imports are validated before saving; archived LabVIEW force curves are never activated automatically.
 
-Moves follow the requested straight line with a **5 mm end zone**: moving axes depart from or approach either configured limit at **300 mm/min (5 mm/s)**, with normal **4000 mm/min** travel in the interior. A stationary axis near an end does not slow the other axis's whole traversal. Each segment completes and its reported position is checked before the next segment; Stop can interrupt between or during segments. Completion deadlines account for distance and speed, including full diagonal travel. Targets outside the range are rejected in main-process validation as well as bounded in the UI.
+Calibration uses `reference = raw × scale + offset` and affects future samples only. Tare requires a fresh valid reading. Bridge inputs are raw counts until calibrated to N; the normal/axial channel assignments remain selectable because the older VI and manual disagree.
 
-The original LabVIEW move string omits feedrate. Its exact inherited feedrate is not saved in the archive. This app explicitly uses the upstream Marlin default **4000 mm/min (66.7 mm/s)** for moves; homing uses the firmware's native homing speed. It restores captured original `M203 X500 Y500`, `M201 X500 Y500` and `M204 P500 T1000` values in RAM, removing the 1 mm/s commissioning cap. It does not change steps/mm, offsets, firmware or EEPROM. **Stop Pitot** and the global **Emergency Stop** send `M112` through the verified emergency parser, invalidate position and require a controller power cycle followed by reconnect/homing. Keep physical motor power cutoff available. The Pitot stop does not command the fan; global Emergency Stop also requests DAC zero.
+## Hardware behavior retained
 
-**Force Balance** shows selectable raw bridge inputs and only labels forces in newtons after an appropriate calibration. See [Pitot evidence and implementation](docs/PITOT-2026-11-19.md).
+- All **37 channels**: four bridges, four thermocouples, atmospheric pressure, four local differential pressures, and 24 backpack pressures. Literal zeros, signed pressures, NaN/Infinity identity, quality, timestamp rollover, and raw serial monitoring are preserved.
+- Fan **0–100% → 0–3000 mV** before nominal ×3 amplification. Only explicit Apply sends a changed target, and exact board acknowledgment is required. This is a manual voltage reference, not calibrated airspeed or VFD run-state feedback. Only 0–5% was physically commissioned in the archived evidence.
+- **Stop acquisition does not stop the fan.** Stop fan requests zero. Emergency Stop immediately blocks nonzero commands, requests DAC zero and sends Pitot `M112`; reset never restores output. USB/process/power failure cannot guarantee physical stopping.
+- Pitot targets remain **X0–360/Y0–360 mm**, without swapping. X is horizontal and Y vertical. Each connection homes only X then Y. Homing persists across navigation and idle time; `M84 S0` retains holding torque. Moves use 300 mm/min in 5-mm end zones and 4000 mm/min in the interior, awaiting `M400` and matching `M114` per segment. Position is Marlin-reported/open loop. Stop requires a controller power cycle and reconnect/home. No EEPROM or firmware writes are performed.
+- Airspeed retains separate Pitot/ring mappings (defaults `press1`/`press2`), manual room temperature, mph/m/s, two-second startup settling and a maximum two-second last-valid atmospheric hold. Differential pressure from −3 through zero Pa is clamped only for derived speed; lower, invalid or stale pressure suppresses it. Raw graphs and recordings are unchanged.
+- UI snapshots publish at 10 Hz with bounded histories; recording receives every sample independently of the display. Source changes/reconnect clear display histories, and nonzero fan output is never restored.
 
-Airspeed uses `v = sqrt(2 × Δp / ρ)` and `ρ = Pabs / [287.05 × (T + 273.15)]`. Differential pressure must be fresh, valid Pa. The atmospheric display and density calculation use the last valid measured kPa value for at most **2 seconds**, displaying its age and labeling held values in Data Viewer. Raw atmospheric NaNs remain visible in the raw column/graphs and recordings. If the two-second limit expires or USB disconnects, the effective value becomes unavailable; there is no invented standard-atmosphere fallback. Startup/restart suppresses derived airspeed for two seconds while the observed pressure transients settle. Raw sampling and recording continue throughout. Displays refresh at 10 Hz rather than 4 Hz. See [November 18 diagnosis](docs/DAQ-AND-FAN-2026-11-18.md) for the firmware bit-check issue underlying the NaNs.
+The supplied SensorBoard source selects ASCII in `Defines.h`; the physical board and this app use its **binary** output branch. Do not reflash it for this port. Replies are a bank byte, little-endian float32 values, and a little-endian uint32 microsecond timestamp. Banks 02/03/04/05/06 have 4/4/1/4/24 values. D0/E0/E1-delimited diagnostics remain visible.
 
-Temperature is entered manually in the acquisition panel. Both estimates support mph and m/s independently of the fan percentage. For airspeed only, finite differential pressure from **−3 Pa through 0 Pa** is treated as zero before the square root, with a clamp explanation shown. Values **below −3 Pa**, invalid/nonfinite inputs and stale readings leave speed unavailable. Negative atmospheric pressure is never clamped into a valid density input. Raw/calibrated signed pressures, plots, quality flags and recordings are unchanged. This low-pressure clamp is separate from NaNs already emitted by the atmospheric sensor firmware.
+Host arguments are big-endian: acquisition starts with `01 00 01 86 A0`, stops with `00`, and DAC zero is `21 00 00`. Commands remain spaced by at least 250 ms because the firmware consumes pending bytes together. The wire protocol has no checksum; the app retains original evidence rather than claiming guaranteed resynchronization.
 
-Archived defaults are Pitot = `press1`, central ring = `press2`; the Main source selectors can change these. Verify the tubing/channel mapping at the tunnel. An unverified legacy static-ring area correction is deliberately not applied. Source changes clear speed history; unit changes convert it. Preview settings and source selections last for the current app session.
+## Develop and verify
 
-**Emergency Stop** immediately latches a main-process block on new nonzero output/acquisition commands and queues DAC zero. Zero remains permitted while latched, including on disconnect/exit. Queued nonzero fan requests are superseded by Stop. **Reset command block** sends no command and never restores a previous percentage. Incoming data and recording may continue. The header remains visible while scrolling. The zero acknowledgment is a firmware report, not feedback of actual motor state; use the physical VFD Stop. Bytes already handed to the serial driver cannot be recalled.
-
-## Firmware contract
-
-The application targets the binary output branch (`SERIAL_OUTPUT_MODE == DATA_MODE_HEX`) in the supplied firmware. Each frame contains a bank byte, little-endian float32 values, and a little-endian uint32 microsecond timestamp. D0/E0/E1-delimited diagnostics are handled independently. Banks 02/03/04/05/06 contain 4/4/1/4/24 values respectively.
-
-Connect attempts `21 00 00` (DAC zero), then sends `01 00 01 86 A0` for a 100000-microsecond period even if zero was not acknowledged, provided the USB connection remains healthy. Commands are spaced by at least 250 ms because the firmware consumes all pending bytes as one command's arguments. Fan Apply sends `21` followed by an unsigned big-endian millivolt value, capped at 3000 mV in both IPC validation and the service. Stop acquisition sends `00`, which does not stop the fan. Raw RX/TX previews remain available in Hardware.
-
-The measured November 5 stream contains 834 frames and all 37 channel slots. The binary decoder, clock, measurement processing, recording and CSV export are verified offline against those original bytes. See [OFFICIAL-DAQ-CAPTURE.md](docs/OFFICIAL-DAQ-CAPTURE.md). Historical bench captures and reports describe earlier releases; the current app accepts binary measurements only.
-
-## Development
-
-Use Node.js 24 LTS and pnpm 11.25.0. From this directory:
+Use Node.js 24 and pnpm 11.25.0:
 
 ```powershell
 pnpm install --frozen-lockfile
-pnpm exec install-electron
 pnpm dev
 ```
 
-| Command         | Purpose                                                            |
-| --------------- | ------------------------------------------------------------------ |
-| `pnpm check`    | TypeScript, offline tests, formatting                              |
-| `pnpm build`    | Compile main, preload and renderer                                 |
-| `pnpm start`    | Run compiled desktop application                                   |
-| `pnpm test:e2e` | Desktop integration test using saved capture and fixture transport |
-| `pnpm package`  | Build Windows executable folder                                    |
-| `pnpm dist`     | Explicitly build a per-user x64/ARM64 installer in `distribution/` |
+Open the printed URL under `/wind-tunnel/`. Development tools are needed only on a build/development computer.
 
-Double-click **Build Installer.cmd** in the parent folder only when preparing a release to share. Normal development/build commands do not rebuild setup. The distribution build leaves the working `release/win-unpacked` app alone. Runtime/framework downloads happen on the build computer when needed; destination computers need only the finished EXE.
+| Command         | Purpose                                                         |
+| --------------- | --------------------------------------------------------------- |
+| `pnpm check`    | TypeScript, offline regressions, formatting                     |
+| `pnpm build`    | Static production build plus offline asset cache in `dist/`     |
+| `pnpm start`    | Preview the built site at localhost:4173/wind-tunnel/           |
+| `pnpm test:e2e` | Browser workflows with injected native USB/file-picker fixtures |
+| `pnpm format`   | Format application code, tests, configuration and README        |
 
-Build before desktop tests. To test the packaged executable:
+Install Playwright's Chromium once for browser tests:
 
 ```powershell
-$env:WT_TEST_EXECUTABLE = (Resolve-Path 'release/win-unpacked/ENS Wind Tunnel.exe').Path
+pnpm exec playwright install chromium
+pnpm build
 pnpm test:e2e
-Remove-Item Env:WT_TEST_EXECUTABLE
 ```
 
-The desktop test injects a transport exclusively within its own main-process test session. It uses the real service, binary decoder, preload, IPC, UI and recorder, with saved board bytes and fixture port metadata; it never opens hardware. No replay/simulation switch is shipped in the renderer or preload API. Test files and capture fixtures are excluded from the packaged application.
+To test an already-installed Edge browser on Windows:
 
-## Data and code
+```powershell
+$env:WT_BROWSER_CHANNEL = 'msedge'
+pnpm test:e2e
+```
 
-Hardware calibration persists in Electron's user-data directory as `hardware-calibrations.json`. Older simulation settings are never loaded. `WT_DATA_DIR` selects an isolated data directory for tests. Calibration changes apply only to future samples and carry version numbers.
+Tests inject native-API fixtures before the page starts. They use original captured board bytes through the production decoder, services, browser storage and UI, and never open physical hardware. No fixture/replay/simulation switch is included in the production build. Node filesystem adapters live only under `tests/support` for comparison with the desktop recording behavior.
 
-JSONL stores session metadata, full raw transport chunks, samples, calibration changes, diagnostics and temperature settings. CSV has one row per scalar sample with raw/calibrated values, units, quality, device/arrival timestamps and calibration version. All new recordings are labeled hardware. New files use exclusive creation. Disk backpressure stops recording visibly; normal stop and export wait for finalization.
+`src/browser/runtime.ts` supplies the typed browser API and exclusive-tab ownership. `src/main/` retains the portable control state machines; its Electron entry was removed. `src/infrastructure/` implements Web Serial, persistent recording, settings and byte utilities. `src/domain` and `src/shared` retain protocol, calculation, validation and channel contracts. `src/renderer` retains the React interface.
 
-Derived airspeed history, operator preview targets, and the airspeed source selections are display settings; they are not exported as derived CSV/JSONL measurements. Preserve the selected mapping separately when analyzing a run.
+## GitHub Pages
 
-`src/domain` implements the protocol and calculations; `src/infrastructure` owns serial and storage; `src/main` owns the session and Electron lifecycle; `src/preload` exposes a narrow typed API; `src/renderer` contains React views. See [ARCHITECTURE.md](docs/ARCHITECTURE.md) and [VALIDATION.md](docs/VALIDATION.md).
+The repository workflow [pages.yml](.github/workflows/pages.yml) validates, builds and tests pushes to `main`, then publishes **only `dist/`** to GitHub Pages. Pull requests run the same validation without publishing. `electron-app` does not deploy this website.
+
+In the GitHub repository, set **Settings → Pages → Build and deployment → Source → GitHub Actions**. Push the browser changes to `main`, then check the workflow's deployment result. The expected project address is [calebellishutchings.github.io/wind-tunnel/](https://calebellishutchings.github.io/wind-tunnel/); that address is live only after a successful deployment. Adding the workflow locally does not publish it.
+
+The Vite base defaults to `/wind-tunnel/`. For a different repository path, set `WT_BASE_PATH` during build and update the test base URL accordingly. GitHub Pages serves static files; USB access, computation and storage execute in the visitor's browser. Captures, original firmware, tests and local recordings are excluded from the deployment artifact.

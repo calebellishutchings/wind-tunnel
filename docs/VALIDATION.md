@@ -1,6 +1,16 @@
 # Validation record
 
-## Current release: v0.6.2 — November 19
+## Current release: browser v0.7.0 — November 21
+
+The browser port passes TypeScript, formatting and all **81 offline tests in 12 files**. A static production build succeeds. The original 68 regressions still pass with browser-native protocol bytes and isolated Node test adapters. Added tests cover Web Serial identity/ownership, stream fragmentation and cleanup, USB loss, failed-open retry, persistent recording/CSV, quota/backpressure, explicit Disconnect, queued-output supersession, missing zero acknowledgment, Emergency Stop and recording-finalization retry.
+
+All **nine browser integration workflows pass in headless Microsoft Edge on Windows**, against the built site at the GitHub Pages project path. Native USB and file-picker fixtures are injected before the app starts; actual IndexedDB, Web Locks, service worker, services, decoder and React views run in the browser. Coverage includes all 37 saved sensor slots, original UI/navigation/plot selection, preview-only targets, fan Apply, acquisition stop/start, calibration/tare/force display, Emergency Stop/reset, full Pitot path/homing persistence, interruption during motion, recording/export/reload, USB loss, missing zero and retry, calibration migration, exclusive control across tabs, offline reload, chooser cancellation, connection-versus-Disconnect races, beforeunload warning, and recovery of an interrupted recording's committed data.
+
+Main and Sessions screenshots were visually checked. The production artifact contains only the HTML/CSS/JS app, generated offline service worker and .nojekyll marker; original captures, test fixtures and user data are excluded. Electron/native serial/build-installer dependencies and startup hooks are removed from main. The local electron-app branch remains at f6b4492 with the unchanged desktop source.
+
+No actual serial device was opened, fan/Pitot operated, firmware changed, or installer run during this port. The GitHub Actions workflow is prepared locally; no GitHub Pages deployment or remote push is claimed. Actual hardware validation, Linux-hosted CI execution and remote deployment remain unverified until performed. See [the README](../README.md) for connection, explicit shutdown, storage/export and Pages setup.
+
+## Historical Electron release: v0.6.2 — November 19
 
 Distribution now uses a one-click, per-user NSIS installer with elevation disabled, bundled x64/ARM64 runtimes, shortcuts and uninstall registration. Setup neither launches the app nor terminates a running copy; a custom process check refuses an update/uninstall while the control application is open. `pnpm dist` / the parent Build Installer.cmd explicitly creates releases in `distribution/`, independently of the active `release/win-unpacked` app. The release workflow runs TypeScript/unit/build checks, writes checksums and statically validates payloads/manifests. No firmware or hardware behavior changed. The operator requested leaving the application running and not installing Setup, so installer execution and clean-machine deployment are not claimed as tested. See [distribution instructions](DISTRIBUTION.md).
 

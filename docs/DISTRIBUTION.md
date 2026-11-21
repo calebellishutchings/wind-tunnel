@@ -1,4 +1,6 @@
-# Windows distribution
+# Historical Windows distribution — Electron v0.6.2
+
+`main` now builds the browser application. See [the current README](../README.md#github-pages) for GitHub Pages deployment and browser operation. The installer workflow below belongs to the preserved `electron-app` branch and is retained as historical evidence.
 
 ## Installing on another computer
 

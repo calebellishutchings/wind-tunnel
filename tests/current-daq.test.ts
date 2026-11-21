@@ -5,8 +5,9 @@ import { join } from 'node:path'
 import { expect, it } from 'vitest'
 import { DaqDecoder } from '../src/domain/protocol'
 import { snapshotAirspeed } from '../src/domain/measurements'
+import { Recorder } from './support/node-recording'
 import { TunnelService } from '../src/main/tunnel-service'
-import { SettingsStore } from '../src/infrastructure/settings'
+import { SettingsStore } from './support/node-settings'
 import { FakeTransport, connect } from './helpers'
 
 it('replays November 18 wire evidence: 120 ms differential packets, 50 atmospheric NaNs, bounded density reuse', async () => {
@@ -36,6 +37,7 @@ it('replays November 18 wire evidence: 120 ms differential packets, 50 atmospher
   const directory = await mkdtemp(join(tmpdir(), 'ens-current-'))
   const transport = new FakeTransport()
   const service = new TunnelService(new SettingsStore(join(directory, 'settings.json')), {
+    recorder: new Recorder(),
     transportFactory: () => transport,
     commandSpacingMs: 0,
     fanAckTimeoutMs: 30,

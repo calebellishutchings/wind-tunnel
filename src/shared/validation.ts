@@ -10,7 +10,7 @@ export const actionSchema = z
     z
       .object({
         type: z.literal('daq-connect'),
-        path: z.string().regex(/^COM[1-9]\d{0,3}$/i),
+        path: z.string().regex(/^(?:COM[1-9]\d{0,3}|USB-[1-9]\d*)$/i),
         baudRate: z.union([z.literal(115200), z.literal(9600)]),
       })
       .strict(),

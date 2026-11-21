@@ -1,3 +1,4 @@
+import { textOf, utf8 } from '../infrastructure/bytes'
 import type { DaqTransport } from '../infrastructure/serial'
 import { listSerialPorts } from '../infrastructure/serial'
 import { SerialPitotTransport } from '../infrastructure/pitot-serial'
@@ -249,10 +250,7 @@ export class PitotService {
     // Install the receiver before writing: replies may arrive before drain resolves.
     this.log('tx', text)
     try {
-      const [lines] = await Promise.all([
-        reply,
-        transport!.write(Buffer.from(text + '\n', 'ascii')),
-      ])
+      const [lines] = await Promise.all([reply, transport!.write(utf8(text + '\n'))])
       this.assertGeneration(generation)
       return lines
     } finally {
@@ -260,8 +258,8 @@ export class PitotService {
       if (this.pending === pending) this.pending = null
     }
   }
-  private receive(chunk: Buffer): void {
-    this.buffer += chunk.toString('utf8')
+  private receive(chunk: Uint8Array): void {
+    this.buffer += textOf(chunk)
     if (this.buffer.length > 32768) {
       this.lost(Error('Pitot response exceeded buffer limit'))
       return
@@ -329,7 +327,7 @@ export class PitotService {
     this.motionPossible = false
     this.log('tx', 'M112')
     // Emergency parser is verified before motion. Bypass the normal command/ack path.
-    await this.transport.write(Buffer.from('M112\n', 'ascii'))
+    await this.transport.write(utf8('M112\n'))
   }
   private async closeTransport(): Promise<void> {
     ++this.generation

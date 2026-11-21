@@ -1,4 +1,5 @@
 import type { PitotAction, PitotState } from './pitot'
+import type { SessionSummary } from './storage'
 export type BankId = 2 | 3 | 4 | 5 | 6
 export type Quality = 'good' | 'invalid' | 'stale' | 'missing'
 export type DataMode = 'hardware'
@@ -115,6 +116,7 @@ export interface FanState {
   error: string | null
 }
 export interface Snapshot {
+  disconnecting: boolean
   pitot: PitotState
   fan: FanState
   at: number
@@ -156,8 +158,14 @@ export type Action =
       unit: string
     }
   | { type: 'reset-calibration'; channelId: string }
-export type Result<T = undefined> = { ok: true; value: T } | { ok: false; error: string }
+export type Result<T = void> = { ok: true; value: T } | { ok: false; error: string }
 export interface TunnelApi {
+  requestPort(kind: 'daq' | 'pitot'): Promise<Result<PortInfo | null>>
+  disconnect(): Promise<Result>
+  listRecordings(): Promise<Result<SessionSummary[]>>
+  saveRecording(id: string | null, format: 'jsonl' | 'csv'): Promise<Result<string | null>>
+  importCalibrations(): Promise<Result>
+  exportCalibrations(): Promise<Result<string | null>>
   pitotAct(action: PitotAction): Promise<Result>
   snapshot(): Promise<Snapshot>
   subscribe(callback: (snapshot: Snapshot) => void): () => void

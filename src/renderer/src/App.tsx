@@ -192,7 +192,7 @@ export function App() {
       <main className="startup">
         <Wind size={42} />
         <h1>ENS Wind Tunnel</h1>
-        <p>{startupError || 'Connecting to the local acquisition service…'}</p>
+        <p>{startupError || 'Opening browser acquisition workspace…'}</p>
       </main>
     )
   const s = snapshot
@@ -244,7 +244,7 @@ export function App() {
             {s.daq.path ?? 'Select a board in Hardware'} · {s.daq.state}
           </p>
           <div className="version">
-            DESKTOP APP <span>v0.6.2</span>
+            WEB APP <span>v0.7.0</span>
           </div>
         </div>
       </aside>
@@ -282,6 +282,26 @@ export function App() {
                 </button>
               )}
               <button
+                className="disconnect-button"
+                disabled={
+                  s.disconnecting ||
+                  (s.daq.state === 'disconnected' &&
+                    s.pitot.status === 'disconnected' &&
+                    !s.recording.active &&
+                    !s.recording.error)
+                }
+                onClick={() => {
+                  setSettings((old) => ({ ...old, requestedPercent: 0 }))
+                  void run(
+                    () => window.tunnel.disconnect(),
+                    'Disconnected. Recordings finalized; connected DAQ acknowledged fan zero.',
+                  )
+                }}
+              >
+                <Plug size={16} />
+                {s.disconnecting ? 'Disconnecting…' : 'Disconnect'}
+              </button>
+              <button
                 disabled={pending || s.recording.active || !s.recording.path || !!s.recording.error}
                 onClick={() => void exportCsv()}
               >
@@ -317,6 +337,11 @@ export function App() {
             </span>
             <span className="banner-tag">{s.daq.receivedBytes.toLocaleString()} BYTES RX</span>
           </div>
+          <p className="browser-session-note">
+            Use <strong>Disconnect</strong> before closing or reloading: verifies fan zero,
+            finalizes recording, and releases both USB connections. Recordings and calibration stay
+            in this browser profile.
+          </p>
           {s.emergencyStopped && (
             <div role="alert" className="emergency-banner">
               <strong>EMERGENCY STOP — NONZERO OUTPUT BLOCKED</strong>
@@ -357,10 +382,10 @@ export function App() {
               onSettings={onSettings}
               speedHistory={speedHistory}
               act={act}
-              pending={pending}
+              pending={pending || s.disconnecting}
               onOpenPitot={() => setPage('Pitot')}
               pitotAct={pitotAct}
-              pitotPending={pitotPending}
+              pitotPending={pitotPending || s.disconnecting}
             />
           )}
           {page === 'Pitot' && (
@@ -370,7 +395,7 @@ export function App() {
               onSettings={onSettings}
               history={history}
               pitotAct={pitotAct}
-              pitotPending={pitotPending}
+              pitotPending={pitotPending || s.disconnecting}
             />
           )}
           {page === 'Force Balance' && <ForceBalancePage snapshot={s} history={history} />}
@@ -420,12 +445,14 @@ export function App() {
             <CalibrationPage
               snapshot={s}
               act={act}
-              pending={pending || s.emergencyStopped}
+              pending={pending || s.disconnecting || s.emergencyStopped}
               reportError={setError}
             />
           )}
-          {page === 'Sessions' && <Sessions snapshot={s} />}
-          {page === 'Hardware' && <Hardware snapshot={s} act={act} pending={pending} run={run} />}
+          {page === 'Sessions' && <Sessions snapshot={s} run={run} />}
+          {page === 'Hardware' && (
+            <Hardware snapshot={s} act={act} pending={pending || s.disconnecting} run={run} />
+          )}
           <footer>
             <span>
               <span className={`status-dot ${running ? '' : 'idle'}`} />

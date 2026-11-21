@@ -3,13 +3,14 @@ import { mkdtemp, readFile, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { describe, expect, it, vi } from 'vitest'
-import { SerialPort } from 'serialport'
+import type { BrowserSerial, BrowserSerialPort } from '../src/shared/browser'
 import { DaqDecoder, DeviceClock } from '../src/domain/protocol'
 import { isDaqPort, preferredDaqPath } from '../src/shared/daq-device'
-import { SerialDaqTransport, type DaqTransport } from '../src/infrastructure/serial'
+import { SerialDaqTransport, SerialRegistry, type DaqTransport } from '../src/infrastructure/serial'
+import { Recorder } from './support/node-recording'
 import { TunnelService } from '../src/main/tunnel-service'
-import { SettingsStore } from '../src/infrastructure/settings'
-import { exportRecordingCsv } from '../src/infrastructure/recording'
+import { SettingsStore } from './support/node-settings'
+import { exportRecordingCsv } from './support/node-recording'
 
 const capture = 'docs/captures/2026-11-05T15-57-56.627Z-COM10-115200-all.jsonl'
 const rows = readFileSync(capture, 'utf8')
@@ -57,7 +58,8 @@ describe('official board capture (offline; no serial devices opened)', () => {
       async open(_options, callbacks) {
         events = callbacks
       },
-      async write(data) {
+      async write(bytes) {
+        const data = Buffer.from(bytes)
         writes.push(data.toString('hex'))
         if (data[0] === 0x21)
           events.data(Buffer.from(`\xd0DAC output set to ${data.readUInt16BE(1)} mV\xd0`, 'latin1'))
@@ -65,6 +67,7 @@ describe('official board capture (offline; no serial devices opened)', () => {
       async close() {},
     }
     const service = new TunnelService(new SettingsStore(join(directory, 'hardware.json')), {
+      recorder: new Recorder(),
       transportFactory: () => transport,
       commandSpacingMs: 0,
       fanAckTimeoutMs: 30,
@@ -107,18 +110,23 @@ describe('official board capture (offline; no serial devices opened)', () => {
     expect(preferredDaqPath([pitot])).toBeUndefined()
     expect(preferredDaqPath([daq, { ...daq, path: 'COM12' }])).toBeUndefined()
   })
-  it('rejects the Pitot before creating or opening a SerialPort', async () => {
-    const list = vi.spyOn(SerialPort, 'list').mockResolvedValue([pitot])
-    try {
-      const transport = new SerialDaqTransport()
-      await expect(
-        transport.open(
-          { path: 'COM11', baudRate: 115200 },
-          { data: () => {}, error: () => {}, close: () => {} },
-        ),
-      ).rejects.toThrow('No port was opened')
-    } finally {
-      list.mockRestore()
-    }
+  it('rejects the Pitot before opening a browser serial port', async () => {
+    const open = vi.fn()
+    const port = {
+      getInfo: () => ({ usbVendorId: 0x1a86, usbProductId: 0x7523 }),
+      open,
+    } as unknown as BrowserSerialPort
+    const registry = new SerialRegistry(
+      () => ({ getPorts: async () => [port] }) as unknown as BrowserSerial,
+    )
+    await registry.refresh()
+    const transport = new SerialDaqTransport(registry)
+    await expect(
+      transport.open(
+        { path: 'USB-1', baudRate: 115200 },
+        { data: () => {}, error: () => {}, close: () => {} },
+      ),
+    ).rejects.toThrow('No port was opened')
+    expect(open).not.toHaveBeenCalled()
   })
 })

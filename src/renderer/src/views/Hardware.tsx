@@ -41,12 +41,20 @@ export function Hardware({
       if (!connected) setPath(preferredDaqPath(result) ?? '')
     }
   }
+  const choose = async () => {
+    const port = await run(() => window.tunnel.requestPort('daq'))
+    if (port) {
+      const authorized = await run(() => window.tunnel.listPorts())
+      if (authorized) setPorts(authorized)
+      setPath(port.path)
+    }
+  }
   return (
     <>
       <div className="two-columns">
         <Panel
           title="DAQ connection"
-          subtitle="Open the selected board and request sensor measurements"
+          subtitle="Choose a USB board, then connect to request sensor measurements"
           action={
             <button disabled={pending} onClick={() => void discover()}>
               <Plug size={15} />
@@ -89,6 +97,9 @@ export function Hardware({
             </div>
           </div>
           <div className="button-pair">
+            <button disabled={pending || connected} onClick={() => void choose()}>
+              Choose DAQ device
+            </button>
             <button
               className="primary"
               disabled={
@@ -108,7 +119,9 @@ export function Hardware({
             </button>
             <button
               disabled={pending || !connected}
-              onClick={() => act({ type: 'daq-disconnect' })}
+              onClick={() =>
+                void run(() => window.tunnel.disconnect(), 'Disconnected and recordings finalized.')
+              }
             >
               Disconnect DAQ
             </button>
@@ -139,6 +152,12 @@ export function Hardware({
             </p>
           )}
           <p className="help-text">
+            Edge/Chrome requires permission for each USB device. Choose DAQ device opens the browser
+            chooser; Scan ports lists devices already authorized for this site. USB labels are
+            browser-session identifiers, not Windows COM numbers. The DAQ and Pitot need separate
+            grants.
+          </p>
+          <p className="help-text">
             Connect attempts DAC zero and starts acquisition at the requested period even if the fan
             interface does not acknowledge. It sends binary commands with little-endian binary
             replies. NaN readings and literal zero values are retained. View Data Viewer for decoded
@@ -157,13 +176,14 @@ export function Hardware({
                     </span>
                   </strong>
                   <p>
-                    VID {port.vendorId ?? '—'} · PID {port.productId ?? '—'} · serial{' '}
-                    {port.serialNumber ?? '—'}
+                    VID {port.vendorId ?? '—'} · PID {port.productId ?? '—'}
                   </p>
                 </div>
               ))
             ) : (
-              <p className="panel-note">No serial devices found.</p>
+              <p className="panel-note">
+                No authorized USB devices. Use Choose DAQ device to grant access.
+              </p>
             ))}
         </Panel>
         <div className="secondary-column">

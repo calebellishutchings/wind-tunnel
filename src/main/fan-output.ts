@@ -13,7 +13,7 @@ export class FanOutput {
     reject: (error: Error) => void
   } | null = null
   constructor(
-    private readonly send: (command: Buffer) => Promise<void>,
+    private readonly send: (command: Uint8Array) => Promise<void>,
     private readonly timeoutMs = 1800,
   ) {}
   private initial(): FanState {

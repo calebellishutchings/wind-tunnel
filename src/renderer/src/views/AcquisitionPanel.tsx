@@ -14,7 +14,7 @@ export function AcquisitionPanel({
   const [period, setPeriod] = useState(s.samplePeriodMs)
   const [temperature, setTemperature] = useState(s.roomTemperatureC)
   const running = s.acquisition === 'running'
-  const blocked = pending || s.emergencyStopped || s.daq.state !== 'connected'
+  const blocked = pending || s.disconnecting || s.emergencyStopped || s.daq.state !== 'connected'
   return (
     <Panel
       title="Data acquisition"

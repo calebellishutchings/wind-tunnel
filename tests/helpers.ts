@@ -10,7 +10,8 @@ export class FakeTransport implements DaqTransport {
   ) {
     this.events = events
   }
-  async write(data: Buffer) {
+  async write(bytes: Uint8Array) {
+    const data = Buffer.from(bytes)
     this.writes.push(Buffer.from(data))
     if (data[0] === 0x21 && this.acknowledgeDac)
       this.emit(Buffer.from(`\xd0DAC output set to ${data.readUInt16BE(1)} mV\xd0`, 'latin1'))
@@ -18,7 +19,7 @@ export class FakeTransport implements DaqTransport {
   async close() {
     this.closed = true
   }
-  emit(data: Buffer) {
+  emit(data: Uint8Array) {
     this.events!.data(data)
   }
 }

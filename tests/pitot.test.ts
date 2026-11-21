@@ -22,8 +22,8 @@ class MarlinFixture implements DaqTransport {
   emit(text: string) {
     this.events.data(Buffer.from(text))
   }
-  async write(data: Buffer) {
-    const command = data.toString().trim()
+  async write(bytes: Uint8Array) {
+    const command = Buffer.from(bytes).toString().trim()
     this.writes.push(command)
     if (command === this.hold || command === 'M112') return
     if (command === 'G28 X') this.x = 0

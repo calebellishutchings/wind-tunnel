@@ -11,12 +11,14 @@ import { actionSchema } from '../shared/validation'
 import { DaqDecoder, DeviceClock, acquisitionCommand } from '../domain/protocol'
 import { fitCalibration, qualityAt, transform } from '../domain/measurements'
 import { Recorder } from '../infrastructure/recording'
-import { SettingsStore } from '../infrastructure/settings'
+import type { CalibrationStore, SessionRecorder } from '../shared/storage'
+import { hexOf, previewText, viewOf } from '../infrastructure/bytes'
 import { SerialDaqTransport, type DaqTransport } from '../infrastructure/serial'
 import { FanOutput } from './fan-output'
 import { FanRequestSupersededError } from '../domain/fan'
 import { PitotService } from './pitot-service'
 import { pitotActionSchema } from '../shared/pitot'
+import { calibrationSchema } from '../shared/calibration'
 
 const delay = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms))
 const initialDaq = (): DaqState => ({
@@ -36,7 +38,7 @@ const initialDaq = (): DaqState => ({
 export class TunnelService {
   readonly pitot: PitotService
   private pitotStop: Promise<void> = Promise.resolve()
-  readonly recorder = new Recorder()
+  readonly recorder: SessionRecorder
   private decoder = new DaqDecoder()
   private clock = new DeviceClock()
   private measurements: Record<string, Measurement> = {}
@@ -52,6 +54,8 @@ export class TunnelService {
   private roomTemperatureC = 22
   private actionQueue: Promise<void> = Promise.resolve()
   private disposed = false
+  private disconnecting = false
+  private disconnectPromise: Promise<void> | null = null
   private clockFault = false
   private emergencyStopped = false
   private fanRevision = 0
@@ -63,14 +67,16 @@ export class TunnelService {
   private wireSequence = 0
   private noDataTimer: ReturnType<typeof setTimeout> | undefined
   constructor(
-    private readonly settings: SettingsStore,
+    private readonly settings: CalibrationStore,
     private readonly options: {
+      recorder?: SessionRecorder
       transportFactory?: () => DaqTransport
       commandSpacingMs?: number
       fanAckTimeoutMs?: number
       pitotOptions?: ConstructorParameters<typeof PitotService>[0]
     } = {},
   ) {
+    this.recorder = options.recorder ?? new Recorder()
     this.fan = new FanOutput((command) => this.transmit(command), options.fanAckTimeoutMs)
     this.pitot = new PitotService(options.pitotOptions, (message) =>
       this.diagnostic('info', message),
@@ -98,6 +104,7 @@ export class TunnelService {
       ]),
     )
     return structuredClone({
+      disconnecting: this.disconnecting,
       pitot: this.pitot.snapshot(),
       fan: this.fan.snapshot(),
       at: now,
@@ -143,7 +150,7 @@ export class TunnelService {
       }
     )
   }
-  ingest(chunk: Buffer, receivedAt = Date.now()): void {
+  ingest(chunk: Uint8Array, receivedAt = Date.now()): void {
     if (!this.transport || !['connecting', 'connected'].includes(this.daq.state)) return
     this.daq.receivedBytes += chunk.length
     this.daq.lastReceivedAt = receivedAt
@@ -242,6 +249,12 @@ export class TunnelService {
   private async perform(action: Action): Promise<void> {
     const zeroOutput = action.type === 'fan-output' && action.percent === 0
     if (
+      this.disconnecting &&
+      !zeroOutput &&
+      !['emergency-stop', 'daq-disconnect'].includes(action.type)
+    )
+      throw Error('Disconnect is in progress; wait before sending commands')
+    if (
       this.emergencyStopped &&
       !zeroOutput &&
       !['emergency-stop', 'emergency-reset', 'daq-disconnect'].includes(action.type)
@@ -307,7 +320,7 @@ export class TunnelService {
         if (!this.transport || this.daq.state !== 'connected')
           throw new Error('Connect a DAQ port from Hardware first')
         await this.transmit(
-          action.running ? acquisitionCommand(this.periodMs * 1000) : Buffer.from([0]),
+          action.running ? acquisitionCommand(this.periodMs * 1000) : new Uint8Array([0]),
         )
         this.acquisition = action.running ? 'running' : 'stopped'
         if (action.running) this.pressureSettlingUntil = Date.now() + 2000
@@ -378,7 +391,7 @@ export class TunnelService {
     this.decoder = new DaqDecoder()
     this.daq = initialDaq()
   }
-  private wire(direction: 'rx' | 'tx', chunk: Buffer, at = Date.now()): void {
+  private wire(direction: 'rx' | 'tx', chunk: Uint8Array, at = Date.now()): void {
     const preview = chunk.subarray(0, 512)
     this.daq.wireLog = [
       ...this.daq.wireLog.slice(-79),
@@ -388,23 +401,17 @@ export class TunnelService {
         direction,
         bytes: chunk.length,
         hex:
-          preview
-            .toString('hex')
+          hexOf(preview)
             .match(/.{1,2}/g)
             ?.join(' ') ?? '',
-        text: preview
-          .toString('latin1')
-          .replace(
-            /[^\x20-\x7e\r\n\t]/g,
-            (character) => `\\x${character.charCodeAt(0).toString(16).padStart(2, '0')}`,
-          ),
+        text: previewText(preview),
         truncated: chunk.length > preview.length,
       },
     ]
-    this.recorder.append({ type: 'wire', direction, receivedAt: at, hex: chunk.toString('hex') })
+    this.recorder.append({ type: 'wire', direction, receivedAt: at, hex: hexOf(chunk) })
   }
-  private async transmit(data: Buffer): Promise<void> {
-    const zeroDac = data.equals(Buffer.from([0x21, 0, 0]))
+  private async transmit(data: Uint8Array): Promise<void> {
+    const zeroDac = data.length === 3 && data[0] === 0x21 && data[1] === 0 && data[2] === 0
     const revision = this.fanRevision
     const wait = (this.options.commandSpacingMs ?? 250) - (Date.now() - this.lastTransmitAt)
     if (wait > 0) await delay(wait)
@@ -413,10 +420,12 @@ export class TunnelService {
     // Recheck after pacing; Emergency Stop can latch during this await.
     if (this.emergencyStopped && !zeroDac)
       throw new Error('Emergency Stop blocks outgoing board commands except DAC zero')
+    if (this.disconnecting && !zeroDac && data[0] !== 0)
+      throw Error('Disconnect blocks outgoing commands except stop and DAC zero')
     if (!(
       (data[0] === 0 && data.length === 1) ||
       (data[0] === 1 && data.length === 5) ||
-      (data[0] === 0x21 && data.length === 3 && data.readUInt16BE(1) <= 3000)
+      (data[0] === 0x21 && data.length === 3 && viewOf(data).getUint16(1, false) <= 3000)
     ))
       throw new Error('Unsupported live DAQ command')
     if (!this.transport) throw new Error('DAQ serial port is not connected')
@@ -447,12 +456,12 @@ export class TunnelService {
     this.diagnostic('error', `DAQ connection lost: ${error.message}`)
     void transport?.close().catch(() => {})
   }
-  private async disconnectDaq(): Promise<void> {
+  private async disconnectDaq(keepOnZeroFailure = false): Promise<void> {
     let failure: unknown
     if (this.transport && this.daq.state === 'connected' && !this.emergencyStopped) {
       try {
         await this.fan.setPercent(0)
-        await this.transmit(Buffer.from([0]))
+        await this.transmit(new Uint8Array([0]))
       } catch (error) {
         failure = error
       }
@@ -464,6 +473,10 @@ export class TunnelService {
         failure = error
       }
     }
+    if (failure && keepOnZeroFailure && this.transport && this.daq.state === 'connected')
+      throw Error(
+        `Fan zero is unverified; DAQ kept connected for a zero retry. Use the physical VFD Stop. ${String(failure)}`,
+      )
     const transport = this.transport
     this.transport = null
     try {
@@ -550,9 +563,62 @@ export class TunnelService {
       await this.recorder.stop()
     }
   }
+  /** Explicit browser shutdown. Stop wins over unsent nonzero work immediately. */
+  disconnectAll(): Promise<void> {
+    if (this.disconnectPromise) return this.disconnectPromise
+    this.disconnecting = true
+    this.fanRevision++
+    const unavailableDaq = this.daq.state === 'error'
+    // Cancel motion now, independently of a DAC acknowledgment or the DAQ queue.
+    const pitotClosing = this.pitot.disconnect()
+    const daqClosing = this.actionQueue
+      .catch(() => {})
+      .then(async () => {
+        try {
+          await this.disconnectDaq(true)
+        } finally {
+          await this.recorder.stop()
+        }
+      })
+    this.actionQueue = daqClosing
+    this.disconnectPromise = Promise.allSettled([daqClosing, pitotClosing])
+      .then((results) => {
+        const errors = results.flatMap((r) => (r.status === 'rejected' ? [String(r.reason)] : []))
+        if (errors.length) throw Error(errors.join(' '))
+        if (unavailableDaq)
+          throw Error(
+            'USB connections released and recordings finalized, but the DAQ was unavailable to verify fan zero. Use the physical VFD Stop.',
+          )
+        this.diagnostic(
+          'info',
+          'Disconnect completed: connected DAQ acknowledged zero, recordings finalized, USB connections released.',
+        )
+      })
+      .finally(() => {
+        this.disconnecting = false
+        this.disconnectPromise = null
+      })
+    return this.disconnectPromise
+  }
+  async importCalibrations(input: unknown): Promise<void> {
+    if (
+      this.disconnecting ||
+      this.disposed ||
+      this.daq.state !== 'disconnected' ||
+      this.recorder.active
+    )
+      throw Error('Disconnect the DAQ before importing calibrations')
+    const next = calibrationSchema.parse(input)
+    await this.settings.save(next)
+    this.calibrations = next
+    this.lastGoodAtmosphere = null
+    this.diagnostic('info', 'Hardware calibrations imported for future measurements.')
+  }
   async actPitot(input: unknown): Promise<void> {
     const action = pitotActionSchema.parse(input)
     if (this.disposed) throw Error('Session is closing')
+    if (this.disconnecting && !['stop', 'disconnect'].includes(action.type))
+      throw Error('Disconnect is in progress; wait before operating the Pitot')
     if (this.emergencyStopped && !['stop', 'disconnect'].includes(action.type))
       throw Error('Reset Emergency Stop before operating the Pitot')
     await this.pitot.act(action)

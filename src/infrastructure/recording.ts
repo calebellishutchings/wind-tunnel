@@ -1,85 +1,147 @@
-import { createWriteStream, type WriteStream } from 'node:fs'
-import { once } from 'node:events'
-import { createInterface } from 'node:readline'
-import { createReadStream } from 'node:fs'
-import { finished } from 'node:stream/promises'
 import type { Measurement, DataMode } from '../shared/model'
+import type { RecordingStorage, SessionRecorder, SessionSummary } from '../shared/storage'
+import { BrowserRecordingStorage } from './browser-storage'
 
-/** Append-only run log. Calibration metadata is stored before affected samples. */
-export class Recorder {
-  private stream: WriteStream | null = null
+/** Append-only, bounded queue. Completed IndexedDB transactions survive page reloads. */
+export class Recorder implements SessionRecorder {
+  private session: SessionSummary | null = null
+  private queue: string[] = []
+  private queuedBytes = 0
+  private writing: Promise<void> = Promise.resolve()
   private closing: Promise<void> | null = null
-  private blocked = false
+  private accepting = false
+  private finalizationError: string | null = null
+  private timer: ReturnType<typeof setTimeout> | undefined
+  private mode: DataMode = 'hardware'
   path: string | null = null
   rows = 0
   error: string | null = null
-  private mode: DataMode = 'hardware'
+  constructor(
+    readonly storage: RecordingStorage = new BrowserRecordingStorage(),
+    private readonly maxQueuedBytes = 1_048_576,
+  ) {}
   get active(): boolean {
-    return this.stream !== null && this.error === null && this.closing === null
+    return this.accepting && this.error === null && this.closing === null
   }
-  async start(path: string, metadata: unknown, mode: DataMode = 'hardware'): Promise<void> {
-    // An I/O failure stops the run but must not strand the session permanently.
-    if (this.stream && this.error) await this.stop().catch(() => {})
-    if (this.stream || this.closing) throw new Error('A recording is already open')
-    const stream = createWriteStream(path, { flags: 'wx', encoding: 'utf8' })
-    stream.on('error', (error) => {
-      this.error = error.message
-    })
-    try {
-      await once(stream, 'open')
-    } catch (error) {
-      stream.destroy()
-      throw error
+  get id(): string | null {
+    return this.session?.id ?? null
+  }
+  async restore(): Promise<void> {
+    const latest = (await this.storage.list())[0]
+    if (latest) {
+      this.session = latest
+      this.path = latest.name
+      this.rows = latest.rows
     }
-    this.stream = stream
-    this.path = path
+  }
+  async start(name: string, metadata: unknown, mode: DataMode = 'hardware'): Promise<void> {
+    if (this.active || this.closing) throw Error('A recording is already open')
+    if (this.session && this.error) await this.stop().catch(() => {})
+    const session: SessionSummary = {
+      id: crypto.randomUUID(),
+      name,
+      startedAt: new Date().toISOString(),
+      rows: 0,
+      chunks: 0,
+      status: 'recording',
+      error: null,
+    }
+    await this.storage.create(session)
+    this.session = session
+    this.path = name
     this.rows = 0
     this.error = null
-    this.blocked = false
+    this.finalizationError = null
     this.mode = mode
-    stream.on('drain', () => {
-      this.blocked = false
-    })
-    this.append({
-      type: 'session',
-      schemaVersion: 1,
-      mode,
-      startedAt: new Date().toISOString(),
-      metadata,
-    })
+    this.queue = []
+    this.queuedBytes = 0
+    this.writing = Promise.resolve()
+    this.accepting = true
+    this.append({ type: 'session', schemaVersion: 1, mode, startedAt: session.startedAt, metadata })
+    this.flush()
+    await this.writing
+    if (this.error) throw Error(this.error)
   }
   append(record: unknown): boolean {
     if (!this.active) return false
-    if (this.blocked) {
+    const line = JSON.stringify(record) + '\n'
+    const size = new TextEncoder().encode(line).byteLength
+    if (this.queuedBytes + size > this.maxQueuedBytes) {
       this.error =
-        'Recording disk cannot keep up. Recording stopped before memory could grow without bound.'
-      this.stream?.end()
+        'Browser storage cannot keep up. Recording stopped before memory could grow without bound.'
+      this.accepting = false
+      this.flush()
       return false
     }
-    this.blocked = !this.stream!.write(JSON.stringify(record) + '\n')
+    this.queue.push(line)
+    this.queuedBytes += size
+    if (this.queuedBytes >= 65536) this.flush()
+    else if (!this.timer) this.timer = setTimeout(() => this.flush(), 100)
     return true
   }
   measurement(measurement: Measurement): void {
-    if (this.append({ type: 'measurement', mode: this.mode, ...measurement })) this.rows++
+    this.rows++
+    if (!this.append({ type: 'measurement', mode: this.mode, ...measurement })) this.rows--
   }
-  async stop(): Promise<void> {
-    if (this.closing) return this.closing
-    const stream = this.stream
-    if (!stream) return
-    this.closing = (async () => {
-      stream.end()
-      try {
-        await finished(stream)
-      } finally {
-        this.stream = null
-        this.closing = null
+  private flush(): void {
+    clearTimeout(this.timer)
+    this.timer = undefined
+    if (!this.queue.length || !this.session) return
+    const text = this.queue.join('')
+    const size = new TextEncoder().encode(text).byteLength
+    const rows = this.rows
+    const session = this.session
+    this.queue = []
+    this.writing = this.writing.then(async () => {
+      if (!session.error) {
+        try {
+          const progress = { ...session, rows, chunks: session.chunks + 1 }
+          await this.storage.append(progress, session.chunks, text)
+          Object.assign(session, progress)
+        } catch (error) {
+          this.error = `Recording failed: ${String(error)}. Previously committed chunks remain available.`
+          session.error = this.error
+          this.accepting = false
+        }
       }
-      if (this.error) throw new Error(this.error)
-    })()
+      this.queuedBytes -= size
+    })
+  }
+  stop(): Promise<void> {
+    if (this.closing) return this.closing
+    const retryFinalization = this.finalizationError !== null
+    if (retryFinalization && this.session) {
+      this.error = this.session.error
+      this.finalizationError = null
+    }
+    if (
+      !this.session ||
+      (!retryFinalization && !this.accepting && !this.queue.length && !this.timer && !this.error)
+    )
+      return this.writing
+    this.accepting = false
+    this.flush()
+    const session = this.session
+    this.closing = (async () => {
+      await this.writing
+      session.status = this.error ? 'error' : 'complete'
+      session.error = this.error
+      // Use committed rows; a storage failure may have rejected the final batch.
+      try {
+        await this.storage.finalize({ ...session })
+      } catch (error) {
+        this.finalizationError = `Recording finalization failed: ${String(error)}. Committed data remains available; retry Disconnect.`
+        this.error = this.finalizationError
+        throw Error(this.error)
+      }
+      if (this.error) throw Error(this.error)
+    })().finally(() => {
+      this.closing = null
+    })
     return this.closing
   }
 }
-const COLUMNS = [
+export const CSV_COLUMNS = [
   'mode',
   'channelId',
   'raw',
@@ -93,37 +155,20 @@ const COLUMNS = [
   'sequence',
   'calibrationVersion',
 ] as const
-function cell(value: unknown): string {
-  const text = value === undefined || value === null ? '' : String(value)
-  return '"' + text.replaceAll('"', '""') + '"'
-}
-/** Stream from a completed log so long runs never need to fit in memory. */
-export async function exportRecordingCsv(source: string, target: string): Promise<void> {
-  const input = createReadStream(source, { encoding: 'utf8' })
-  const output = createWriteStream(target, { flags: 'wx', encoding: 'utf8' })
-  let writeError: Error | null = null
-  output.on('error', (error) => {
-    writeError = error
-    input.destroy(error)
-  })
-  const lines = createInterface({ input, crlfDelay: Infinity })
-  try {
-    output.write(COLUMNS.join(',') + '\n')
-    for await (const line of lines) {
-      if (writeError) throw writeError
+const cell = (value: unknown): string =>
+  '"' + (value == null ? '' : String(value)).replaceAll('"', '""') + '"'
+
+export async function* recordingCsv(chunks: AsyncIterable<string>): AsyncIterable<string> {
+  yield CSV_COLUMNS.join(',') + '\n'
+  for await (const chunk of chunks) {
+    const rows: string[] = []
+    for (const line of chunk.split('\n')) {
+      if (!line) continue
       const record = JSON.parse(line) as Record<string, unknown>
       if (record.type !== 'measurement') continue
       const row = { ...record, mode: record.mode ?? 'hardware' }
-      if (!output.write(COLUMNS.map((key) => cell(row[key as keyof typeof row])).join(',') + '\n'))
-        await once(output, 'drain')
+      rows.push(CSV_COLUMNS.map((key) => cell(row[key as keyof typeof row])).join(',') + '\n')
     }
-    output.end()
-    await finished(output)
-  } catch (error) {
-    output.destroy()
-    throw error
-  } finally {
-    lines.close()
-    input.destroy()
+    if (rows.length) yield rows.join('')
   }
 }

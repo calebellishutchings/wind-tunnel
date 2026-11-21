@@ -4,5 +4,16 @@ export default defineConfig({
   timeout: 60000,
   workers: 1,
   reporter: 'list',
-  use: { trace: 'retain-on-failure' },
+  use: {
+    baseURL: 'http://127.0.0.1:4173/wind-tunnel/',
+    channel: process.env.WT_BROWSER_CHANNEL,
+    viewport: { width: 1440, height: 940 },
+    trace: 'retain-on-failure',
+  },
+  webServer: {
+    command: 'pnpm start',
+    url: 'http://127.0.0.1:4173/wind-tunnel/',
+    reuseExistingServer: !process.env.CI,
+    timeout: 30000,
+  },
 })

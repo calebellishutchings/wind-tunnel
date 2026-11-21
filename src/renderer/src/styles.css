@@ -8,6 +8,48 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
+.browser-session-note {
+  margin: -12px 0 22px;
+  color: #71828d;
+  font-size: 11px;
+  line-height: 1.7;
+}
+.disconnect-button {
+  border-color: #9cb9c2;
+}
+.saved-run {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid #edf1f3;
+  padding: 16px 0;
+  overflow-wrap: anywhere;
+}
+.saved-run strong {
+  font-size: 12px;
+}
+.saved-run p {
+  font-size: 11px;
+  color: #71828d;
+  margin-top: 7px;
+}
+.saved-run .button-pair {
+  margin: 0;
+  flex-shrink: 0;
+}
+.calibration-file-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.calibration-file-actions p {
+  flex: 1;
+  color: #71828d;
+  font-size: 11px;
+  line-height: 1.7;
+}
 * {
   box-sizing: border-box;
 }

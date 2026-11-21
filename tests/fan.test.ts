@@ -14,8 +14,8 @@ it('maps percentages to integer millivolts with strict 3 V bounds', () => {
 it('requires acknowledged zero, exact DAC acknowledgments, and resets its trust on disconnect', async () => {
   const writes: string[] = []
   const fan = new FanOutput(async (command) => {
-    writes.push(command.toString('hex'))
-    fan.message(`DAC output set to ${command.readUInt16BE(1)} mV`)
+    writes.push(Buffer.from(command).toString('hex'))
+    fan.message(`DAC output set to ${Buffer.from(command).readUInt16BE(1)} mV`)
   }, 30)
   await expect(fan.setPercent(5)).rejects.toThrow('Verify zero')
   expect(writes).toEqual([])

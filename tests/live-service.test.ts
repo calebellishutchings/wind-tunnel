@@ -2,7 +2,8 @@ import { mkdtemp, rm, readFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
-import { SettingsStore } from '../src/infrastructure/settings'
+import { SettingsStore } from './support/node-settings'
+import { Recorder } from './support/node-recording'
 import { TunnelService } from '../src/main/tunnel-service'
 import { encodeFrame } from '../src/domain/protocol'
 import { FakeTransport, connect } from './helpers'
@@ -16,6 +17,7 @@ describe('board-only session', () => {
     directory = await mkdtemp(join(tmpdir(), 'ens-board-'))
     transport = new FakeTransport()
     service = new TunnelService(new SettingsStore(join(directory, 'hardware.json')), {
+      recorder: new Recorder(),
       transportFactory: () => transport,
       commandSpacingMs: 0,
       fanAckTimeoutMs: 30,
@@ -230,6 +232,7 @@ describe('board-only session', () => {
   })
   it('cancels an unsent nonzero request while waiting for firmware command pacing', async () => {
     const paced = new TunnelService(new SettingsStore(join(directory, 'paced.json')), {
+      recorder: new Recorder(),
       transportFactory: () => transport,
       commandSpacingMs: 50,
       fanAckTimeoutMs: 100,
@@ -257,7 +260,10 @@ describe('board-only session', () => {
     await service.act(connect)
     const original = transport.write.bind(transport)
     transport.write = async (data) => {
-      transport.acknowledgeDac = !(data[0] === 0x21 && data.readUInt16BE(1) > 0)
+      transport.acknowledgeDac = !(
+        data[0] === 0x21 &&
+        new DataView(data.buffer, data.byteOffset, data.byteLength).getUint16(1) > 0
+      )
       await original(data)
     }
     await expect(service.act({ type: 'fan-output', percent: 5 })).rejects.toThrow(

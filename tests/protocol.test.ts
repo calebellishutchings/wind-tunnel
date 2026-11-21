@@ -60,9 +60,9 @@ describe('archived DAQ protocol', () => {
     })
   })
   it('encodes integer arguments big-endian, independently of response order', () => {
-    expect(acquisitionCommand(100000).toString('hex')).toBe('01000186a0')
-    expect(dacCommand(1250).toString('hex')).toBe('2104e2')
-    expect(dacCommand(0).toString('hex')).toBe('210000')
+    expect(Buffer.from(acquisitionCommand(100000)).toString('hex')).toBe('01000186a0')
+    expect(Buffer.from(dacCommand(1250)).toString('hex')).toBe('2104e2')
+    expect(Buffer.from(dacCommand(0)).toString('hex')).toBe('210000')
     expect(() => dacCommand(3301)).toThrow()
     expect(() => dacCommand(-1)).toThrow()
     expect(() => dacCommand(NaN)).toThrow()

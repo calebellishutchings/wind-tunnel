@@ -1,3 +1,4 @@
+import { joinBytes, textOf, viewOf } from '../infrastructure/bytes'
 import type { BankId } from '../shared/model'
 export const BANK_SIZES: Record<BankId, number> = { 2: 4, 3: 4, 4: 1, 5: 4, 6: 24 }
 export type Packet =
@@ -6,12 +7,12 @@ export type Packet =
 
 /** Binary float32 and uint32 fields match the captured RP2350 firmware. */
 export class DaqDecoder {
-  private buffer = Buffer.alloc(0)
+  private buffer: Uint8Array = new Uint8Array(0)
   get format(): 'binary' {
     return 'binary'
   }
   push(chunk: Uint8Array): Packet[] {
-    this.buffer = Buffer.concat([this.buffer, Buffer.from(chunk)])
+    this.buffer = joinBytes(this.buffer, chunk)
     const packets: Packet[] = []
     while (this.buffer.length) {
       const id = this.buffer[0]!
@@ -25,13 +26,13 @@ export class DaqDecoder {
             message:
               'Unterminated DAQ text exceeded 4096 bytes; decoder reset. Framing is uncertain.',
           })
-          this.buffer = Buffer.alloc(0)
+          this.buffer = new Uint8Array(0)
           break
         }
         packets.push({
           type: 'diagnostic',
           level: id === 0xd0 ? 'info' : id === 0xe0 ? 'warning' : 'error',
-          message: this.buffer.subarray(1, end).toString('utf8'),
+          message: textOf(this.buffer.subarray(1, end)),
         })
         this.buffer = this.buffer.subarray(end + 1)
         continue
@@ -55,40 +56,42 @@ export class DaqDecoder {
       }
       const length = 5 + count * 4
       if (this.buffer.length < length) break
-      const values = Array.from({ length: count }, (_, i) => this.buffer.readFloatLE(1 + 4 * i))
+      const values = Array.from({ length: count }, (_, i) =>
+        viewOf(this.buffer).getFloat32(1 + 4 * i, true),
+      )
       packets.push({
         type: 'measurement',
         bank: id as BankId,
         values,
-        deviceMicros: this.buffer.readUInt32LE(1 + count * 4),
+        deviceMicros: viewOf(this.buffer).getUint32(1 + count * 4, true),
       })
       this.buffer = this.buffer.subarray(length)
     }
     return packets
   }
 }
-export function encodeFrame(bank: BankId, values: number[], deviceMicros: number): Buffer {
+export function encodeFrame(bank: BankId, values: number[], deviceMicros: number): Uint8Array {
   if (values.length !== BANK_SIZES[bank]) throw new Error('Incorrect bank size')
-  const frame = Buffer.alloc(5 + values.length * 4)
+  const frame = new Uint8Array(5 + values.length * 4)
   frame[0] = bank
-  values.forEach((value, i) => frame.writeFloatLE(value, 1 + 4 * i))
-  frame.writeUInt32LE(deviceMicros >>> 0, 1 + values.length * 4)
+  values.forEach((value, i) => viewOf(frame).setFloat32(1 + 4 * i, value, true))
+  viewOf(frame).setUint32(1 + values.length * 4, deviceMicros >>> 0, true)
   return frame
 }
-export function acquisitionCommand(periodMicros: number): Buffer {
+export function acquisitionCommand(periodMicros: number): Uint8Array {
   if (!Number.isInteger(periodMicros) || periodMicros < 1 || periodMicros > 0xffffffff)
     throw new Error('Invalid period')
-  const command = Buffer.alloc(5)
+  const command = new Uint8Array(5)
   command[0] = 1
-  command.writeUInt32BE(periodMicros, 1)
+  viewOf(command).setUint32(1, periodMicros, false)
   return command
 }
-export function dacCommand(millivolts: number): Buffer {
+export function dacCommand(millivolts: number): Uint8Array {
   if (!Number.isInteger(millivolts) || millivolts < 0 || millivolts > 3300)
     throw new Error('DAC must be an integer from 0 to 3300 mV')
-  const command = Buffer.alloc(3)
+  const command = new Uint8Array(3)
   command[0] = 0x21
-  command.writeUInt16BE(millivolts, 1)
+  viewOf(command).setUint16(1, millivolts, false)
   return command
 }
 
